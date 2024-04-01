@@ -1,0 +1,55 @@
+#ssCnFormBlog{
+    background-color: white;
+    border-radius: 5px;
+}
+.colorGrenn{
+    color: #5AD058;
+}
+#div1CtnConnexion{
+    height: 70vh;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+}
+#ssCnFormBlog{
+   padding: 15px;
+}
+#ctnInputConnexion > div{
+    position: relative;
+    margin: 25px 0px;
+}
+#ctnInputConnexion div img{
+position: absolute;
+top: 4px;
+left: 4px;
+}
+#ctnInputConnexion input{
+    padding-left: 25px;
+    border: 2px solid grey;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1rem;
+}
+#ssCnFormBlog h2{
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+button{
+    background-color: #5AD058;
+    padding: 5px;
+    border-radius: 5px;
+    width: 100%;
+    color: white;
+}
+#ctnBtnConnexion{
+    display: flex;
+    justify-content: center;
+}
+/*para 2*/
+
+#div2CtnConnexion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

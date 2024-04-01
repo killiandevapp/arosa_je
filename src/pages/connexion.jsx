@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import '../styles/connexion.css'
 
 export default function Connexion() {
     const [getData, setGetData] = useState({
@@ -11,13 +12,33 @@ export default function Connexion() {
     return (
         <section id="sctConnexion1">
             <div id="div1CtnConnexion">
-                <div id="ctn">
-                    <input type="text" onChange={(e) => setGetData({ ...getData, login: e.target.value })} />
-                    <input type="text" onChange={(e) => setGetData({ ...getData, password: e.target.value })} />
+                <div id="ssCnFormBlog">
+                    <div>
+                        <h2>Vous revoilà !</h2>
+                        <p>Entrez vos identifiants pour vous connecter.</p>
+                    </div>
+                    <div id="ctnInputConnexion">
+                        <div>
+                            <input placeholder="Entrez votre adresse e-mail" type="text" onChange={(e) => setGetData({ ...getData, login: e.target.value })} />
+                            <img src={require('../images/emailLogo.png')}  alt="" srcset="" />
+
+                        </div>
+                        <div>
+                            <input placeholder="Entrez votre mot de passe" type="text" onChange={(e) => setGetData({ ...getData, password: e.target.value })} />
+                            <img src={require('../images/passwordLogo.png')}  alt="" srcset="" />
+
+                        </div>
+                    </div>
+                    <div id="ctnBtnConnexion">
+                        <button>Connexion</button>
+                    </div>
 
                 </div>
             </div>
             <div id="div2CtnConnexion">
+                <p>J’ai <span className="colorGrenn">oublié  mon mot de passe </span></p>
+                <p>Pas encore inscrit ? <span className="colorGrenn"> Creér mon compte</span></p>
+
                 {/* Contenu du deuxième conteneur */}
             </div>
         </section>
