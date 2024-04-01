@@ -1,0 +1,38 @@
+{
+    "articles": [
+      {
+        "id": 1,
+        "title": "Titre de l'article 1",
+        "imgSrc": "../src/images/blog/imgBlog1.jpg",
+        "paragraphBlog": "Les plantes sont des organismes photosynthétiques et autotrophes, caractérisés par des cellules végétales. Elles forment l'un des règnes des Eukaryota. Ce règne est un groupe monophylétique comprenant les plantes terrestres.",
+        "auteur": "Auteur de l'article 1",
+        "date": "09-01/2024"
+      },
+      {
+        "id": 2,
+        "title": "Titre de l'article 2",
+        "imgSrc": "../images/blog/imgBlog2.jpg",
+        "paragraphBlog": "Les plantes sont des organismes photosynthétiques et autotrophes, caractérisés par des cellules végétales. Elles forment l'un des règnes des Eukaryota. Ce règne est un groupe monophylétique comprenant les plantes terrestres.",
+        "auteur": "Auteur de l'article 2",
+        "date": "09-01/2024"
+
+      },
+      {
+        "id": 3,
+        "title": "Titre de l'article 3",
+        "imgSrc": "../src/images/blog/imgBlog3.jpg",
+        "paragraphBlog": "Les plantes sont des organismes photosynthétiques et autotrophes, caractérisés par des cellules végétales. Elles forment l'un des règnes des Eukaryota. Ce règne est un groupe monophylétique comprenant les plantes terrestres.",
+        "auteur": "Auteur de l'article 3",
+        "date": "09-01/2024"
+      },
+      {
+        "id": 4,
+        "title": "Titre de l'article 4",
+        "imgSrc": "../images/blog/imgBlog4.jpg",
+        "paragraphBlog": "Les plantes sont des organismes photosynthétiques et autotrophes, caractérisés par des cellules végétales. Elles forment l'un des règnes des Eukaryota. Ce règne est un groupe monophylétique comprenant les plantes terrestres.",
+        "auteur": "Auteur de l'article 4",
+        "date": "09-01/2024"
+      }
+    ]
+  }
+  
