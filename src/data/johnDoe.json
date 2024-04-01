@@ -3,12 +3,27 @@
     "firstName": "John",
     "mail": "doe.john@gmail.com",
     "phone": "0123456789",
-    "address": {
-        "street": "rue de la paix",
-        "city": "Paris",
-        "zip": "75000"
-    },
-    "profilPicture": ""
+    "street": "rue de la paix",
+    "city": "Paris",
+    "zip": "75000",
+    "profilPicture": "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "gardes": [
+        {
+          "debut": "2024-04-01",
+          "fin": "2024-04-15",
+          "typePlante": "Roses"
+        },
+        {
+          "debut": "2024-05-10",
+          "fin": "2024-05-25",
+          "typePlante": "Tulipes"
+        },
+        {
+          "debut": "2024-06-20",
+          "fin": "2024-07-05",
+          "typePlante": "Lavandes"
+        }
+      ]
 }
 
 

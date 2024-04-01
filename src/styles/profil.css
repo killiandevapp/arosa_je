@@ -1,19 +1,102 @@
-.profile {
-    display: flex;
+.body {
+    background-color: #E3E3E3;
+}
+
+.button-modifier {
+    background-color: #007bff; /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    padding: 10px 20px; /* Espacement à l'intérieur du bouton */
+    border: none; /* Supprimer la bordure */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Curseur de la souris */
+    transition: background-color 0.3s ease; /* Transition de couleur au survol */
+    margin-top: 1%;
+    width: auto;
   }
   
-  .left {
-    flex: 1;
+  .button-modifier:hover {
+    background-color: #0056b3; /* Couleur de fond au survol */
   }
-  
-  .right {
-    flex: 2;
-    padding: 20px;
-  }
-  
-  .profile img {
+
+.profilPicture {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-  }
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-bottom:  5%;    
+}
+.profile {
+    display: flex;
+}
+
+.left {
+    flex: 1;
+    padding-left: 10%;
+
+}
+
+.separator {
+    border-bottom: 1px solid #000;
+    width: 90%;
+    padding-top: 3%;
+    margin: 0 auto;
+    display: center;
+}
   
+.right {
+    flex: 2;
+    padding: 20px;
+}
+  
+.name {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.section-title {
+    font-size: 40px;
+    font-weight: 600;
+    margin-top: auto;
+    margin-bottom: 10px;
+    text-align: center; /* Center the title */
+    color: #3CD646;
+}
+
+.profil-data {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: left; /* Center the title */
+}
+ .icons {
+    display: inline-block;
+    margin-right: 15px;
+    height: auto;
+    width: 30px;
+ }
+
+ .gardes {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+ }
+
+ .garde-display {
+    background-color: #02a70d;
+    color: white;
+    width: fit-content;
+    border-radius: 15px; /* Cela crée des coins arrondis */
+    padding: 20px; /* Ajustez selon les besoins */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+
+
+.space {
+    margin-top: 5%;
+}

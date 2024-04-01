@@ -6,6 +6,11 @@ import data from "../data/johnDoe.json";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
+//import des icons
+import mail from "../assets/email.png";
+import phone from "../assets/phone-call.png";
+import address from "../assets/location-pin.png";
+
 export default function MyProfilePage() {
   const [editing, setEditing] = useState(false);
   const [userData, setUserData] = useState({});
@@ -29,25 +34,50 @@ export default function MyProfilePage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     toggleEditing();
-    // Handle submission logic here
   };
 
   const ProfileDisplay = () => {
     return (
-      <div>
+      <div className="body">
         <Header />
+        <h1 className="section-title">Mon profile</h1>
         <div className="profile">
           <div className="left">
-            <img src={userData.profilPicture} alt="profil picture" />
+            <img className="profilPicture" src={userData.profilPicture} alt="profil picture" />
           </div>
           <div className="right">
-            <h1>{userData.firstName + " " + userData.name}</h1>
-            <p>{userData.mail}</p>
-            <p>{userData.phone}</p>
+            <h1 className="name">{userData.firstName + " " + userData.name}</h1>
+            <p className="profil-data">
+                <img src={mail} alt="mail" className="icons" />
+                {userData.mail}
+                </p>
+            <p className="profil-data">
+                <img src={phone} alt="phone" className="icons" />  
+                {userData.phone}</p>
+            <p className="profil-data">
+                <img src={address} alt= "address" className="icons" />
+              {userData.street +
+                " " +
+                userData.city +
+                " " +
+                userData.zip}
+            </p>
         
-            <button onClick={toggleEditing}>Edit Profile</button>
+            <button className="button-modifier" onClick={toggleEditing}>Modifier mon profil</button>
           </div>
         </div>
+        <div className="separator" />
+        <h1 className="section-title">Mes Gardes</h1>
+        <div className="gardes">
+        {userData.gardes && userData.gardes.map((garde, index) => (
+          <div className="garde-display" key={index}>
+            <p>Date de début : {garde.debut}</p>
+            <p>Date de fin : {garde.fin}</p>
+            <p>Type de plante : {garde.typePlante}</p>
+          </div>
+        ))}
+      </div>
+      <div className="space" />
         <Footer />
       </div>
     );
