@@ -1,0 +1,14 @@
+{
+    "name": "Doe",
+    "firstName": "John",
+    "mail": "doe.john@gmail.com",
+    "phone": "0123456789",
+    "address": {
+        "street": "rue de la paix",
+        "city": "Paris",
+        "zip": "75000"
+    },
+    "profilPicture": ""
+}
+
+
