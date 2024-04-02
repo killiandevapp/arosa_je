@@ -10,6 +10,7 @@ import Footer from "../components/footer";
 import mail from "../assets/email.png";
 import phone from "../assets/phone-call.png";
 import address from "../assets/location-pin.png";
+import flower from "../assets/flower-pot.png";
 
 export default function MyProfilePage() {
   const [editing, setEditing] = useState(false);
@@ -27,7 +28,7 @@ export default function MyProfilePage() {
     const { name, value } = e.target;
     setUserData((prevData) => ({
       ...prevData,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -43,41 +44,48 @@ export default function MyProfilePage() {
         <h1 className="section-title">Mon profile</h1>
         <div className="profile">
           <div className="left">
-            <img className="profilPicture" src={userData.profilPicture} alt="profil picture" />
+            <img
+              className="profilPicture"
+              src={userData.profilPicture}
+              alt="profil"
+            />
           </div>
           <div className="right">
             <h1 className="name">{userData.firstName + " " + userData.name}</h1>
+            <div className="space" />
             <p className="profil-data">
-                <img src={mail} alt="mail" className="icons" />
-                {userData.mail}
-                </p>
-            <p className="profil-data">
-                <img src={phone} alt="phone" className="icons" />  
-                {userData.phone}</p>
-            <p className="profil-data">
-                <img src={address} alt= "address" className="icons" />
-              {userData.street +
-                " " +
-                userData.city +
-                " " +
-                userData.zip}
+              <img src={mail} alt="mail" className="icons" />
+              {userData.mail}
             </p>
-        
-            <button className="button-modifier" onClick={toggleEditing}>Modifier mon profil</button>
+            <p className="profil-data">
+              <img src={phone} alt="phone" className="icons" />
+              {userData.phone}
+            </p>
+            <p className="profil-data">
+              <img src={address} alt="address" className="icons" />
+              {userData.street + " " + userData.city + " " + userData.zip}
+            </p>
+            <div className="space" />
+
+            <button className="button-modifier" onClick={toggleEditing}>
+              Modifier mon profil
+            </button>
           </div>
         </div>
         <div className="separator" />
         <h1 className="section-title">Mes Gardes</h1>
         <div className="gardes">
-        {userData.gardes && userData.gardes.map((garde, index) => (
-          <div className="garde-display" key={index}>
-            <p>Date de début : {garde.debut}</p>
-            <p>Date de fin : {garde.fin}</p>
-            <p>Type de plante : {garde.typePlante}</p>
-          </div>
-        ))}
-      </div>
-      <div className="space" />
+          {userData.gardes &&
+            userData.gardes.map((garde, index) => (
+              <div className="garde-display" key={index}>
+                <img src={flower} alt="flower" className="icons" />
+                <p>Date de début : {garde.debut}</p>
+                <p>Date de fin : {garde.fin}</p>
+                <p>Type de plante : {garde.typePlante}</p>
+              </div>
+            ))}
+        </div>
+        <div className="space" />
         <Footer />
       </div>
     );

@@ -3,24 +3,25 @@
 }
 
 .button-modifier {
-    background-color: #007bff; /* Couleur de fond */
-    color: #fff; /* Couleur du texte */
-    padding: 10px 20px; /* Espacement à l'intérieur du bouton */
-    border: none; /* Supprimer la bordure */
-    border-radius: 5px; /* Coins arrondis */
-    cursor: pointer; /* Curseur de la souris */
-    transition: background-color 0.3s ease; /* Transition de couleur au survol */
+    background-color: #02a70d; 
+    color: #fff; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
     margin-top: 1%;
     width: auto;
   }
   
   .button-modifier:hover {
-    background-color: #0056b3; /* Couleur de fond au survol */
+    background-color: #00990a; 
   }
 
 .profilPicture {
     width: 200px;
     height: 200px;
+    object-fit: cover;
     border-radius: 50%;
     margin-top: 5%;
     margin-left: 5%;
@@ -60,15 +61,16 @@
     font-weight: 600;
     margin-top: auto;
     margin-bottom: 10px;
-    text-align: center; /* Center the title */
-    color: #3CD646;
+    text-align: center;
+    color: #02a70d;
 }
 
 .profil-data {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 10px;
-    text-align: left; /* Center the title */
+    margin-top: 10px;
+    text-align: left; 
 }
  .icons {
     display: inline-block;
@@ -88,8 +90,8 @@
     background-color: #02a70d;
     color: white;
     width: fit-content;
-    border-radius: 15px; /* Cela crée des coins arrondis */
-    padding: 20px; /* Ajustez selon les besoins */
+    border-radius: 15px; 
+    padding: 20px; 
     display: flex;
     justify-content: center;
     align-items: center;
