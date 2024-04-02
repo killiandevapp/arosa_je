@@ -1,0 +1,36 @@
+.profile-edit {
+    width: 300px; /* Ajustez la largeur selon vos besoins */
+    margin: 0 auto; /* Centre le formulaire horizontalement */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: absolute; /* Permet de positionner le formulaire */
+    top: 50%; /* Le placer à 50% de la hauteur de la page */
+    left: 50%; /* Le placer à 50% de la largeur de la page */
+    transform: translate(-50%, -50%); /* Centrer exactement le formulaire */
+}
+
+.profile-edit input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.profile-edit button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #02a70d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile-edit button:hover {
+    background-color: #00990a;
+}

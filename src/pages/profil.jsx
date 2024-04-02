@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/profil.css";
+import "../styles/editProfil.css"
 import data from "../data/johnDoe.json";
 
 // Import des composants Header et Footer
@@ -43,16 +44,12 @@ export default function MyProfilePage() {
         <Header />
         <h1 className="section-title">Mon profile</h1>
         <div className="profile">
-          <div className="left">
             <img
               className="profilPicture"
               src={userData.profilPicture}
               alt="profil"
             />
-          </div>
-          <div className="right">
-            <h1 className="name">{userData.firstName + " " + userData.name}</h1>
-            <div className="space" />
+             <h1 className="name">{userData.firstName + " " + userData.name}</h1>
             <p className="profil-data">
               <img src={mail} alt="mail" className="icons" />
               {userData.mail}
@@ -65,12 +62,9 @@ export default function MyProfilePage() {
               <img src={address} alt="address" className="icons" />
               {userData.street + " " + userData.city + " " + userData.zip}
             </p>
-            <div className="space" />
-
             <button className="button-modifier" onClick={toggleEditing}>
               Modifier mon profil
             </button>
-          </div>
         </div>
         <div className="separator" />
         <h1 className="section-title">Mes Gardes</h1>
@@ -122,11 +116,11 @@ export default function MyProfilePage() {
           type="text"
           name="address"
           value={
-            userData.address.street +
+            userData.street +
             " " +
-            userData.address.city +
+            userData.city +
             " " +
-            userData.address.zip
+            userData.zip
           }
           onChange={handleChanges}
         />
