@@ -1,21 +1,21 @@
-import { Fragment, useEffect } from 'react'
-import { Disclosure } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Fragment, useEffect } from "react";
+import { Disclosure } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 // import Reglage from '../reglages/reglages'
-import { Link } from 'react-router-dom'
-import Logo from '../images/22.png'
+import { Link } from "react-router-dom";
+import Logo from "../images/22.png";
 // import { showCurrentPage } from '../redux/action/currentPage'
 // import store from '../redux/store'
 
-
 const navigation = [
-  { name: 'Patient', href: '/info', current: true },
-  { name: 'Blog', href: '/infoBlog', current: false },
-  { name: 'Stock', href: '/stock', current: false },
-]
+  { name: "Patient", href: "/info", current: true },
+  { name: "Blog", href: "/infoBlog", current: false },
+  { name: "Stock", href: "/stock", current: false },
+  { name: "Profil", href: "/profil", current: false },
+];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbarv2({ pageAcutelle }) {
@@ -26,8 +26,8 @@ export default function Navbarv2({ pageAcutelle }) {
       } else {
         item.current = false;
       }
-    })
-  }, [])
+    });
+  }, []);
   return (
     <Disclosure as="nav" className="bg-white shadow-xl sticky top-0 z-10">
       {({ open }) => (
@@ -48,33 +48,27 @@ export default function Navbarv2({ pageAcutelle }) {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-
-                  <Link to='/info'>
-                    <img
-                      className="h-6"
-                      src={Logo}
-                      alt="ISIS"
-                    />
+                  <Link to="/info">
+                    <img className="h-6" src={Logo} alt="ISIS" />
                   </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                     
-                      <> 
+                      <>
                         <a
                           key={item.name}
                           href={item.href}
                           className={classNames(
-                            item.current ? 'bg-[#1791EE] text-white underline' : 'text-gray-800 hover:underline hover:bg-sky-200 hover:text-gray-600',
-                            'rounded-md px-3 py-2 text-sm font-medium'
+                            item.current
+                              ? "bg-[#1791EE] text-white underline"
+                              : "text-gray-800 hover:underline hover:bg-sky-200 hover:text-gray-600",
+                            "rounded-md px-3 py-2 text-sm font-medium"
                           )}
-                          aria-current={
-                            () => {
-                              // store.dispatch(showCurrentPage(item.name));
-                              item.current ='page' 
-                            }
-                          }
+                          aria-current={() => {
+                            // store.dispatch(showCurrentPage(item.name));
+                            item.current = "page";
+                          }}
                         >
                           {item.name}
                         </a>
@@ -85,7 +79,6 @@ export default function Navbarv2({ pageAcutelle }) {
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {/* <Reglage /> */}
-
               </div>
             </div>
           </div>
@@ -98,10 +91,12 @@ export default function Navbarv2({ pageAcutelle }) {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current ? 'bg-[#1791EE] text-white underline' : 'text-gray-800 hover:underline hover:bg-sky-200 hover:text-gray-600',
-                    'block rounded-md px-3 py-2 text-base font-medium'
+                    item.current
+                      ? "bg-[#1791EE] text-white underline"
+                      : "text-gray-800 hover:underline hover:bg-sky-200 hover:text-gray-600",
+                    "block rounded-md px-3 py-2 text-base font-medium"
                   )}
-                  aria-current={item.current ? 'page' : undefined}
+                  aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
                 </Disclosure.Button>
@@ -111,5 +106,5 @@ export default function Navbarv2({ pageAcutelle }) {
         </>
       )}
     </Disclosure>
-  )
+  );
 }

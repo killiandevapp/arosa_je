@@ -7,6 +7,7 @@ import { Routes } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import Connexion from './pages/connexion';
 import Enregistrement from './pages/enregistrement';
+import Profil from './pages/profil';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path="/blog" element={<Blog />}> </Route>
       <Route path="/connexion" element={<Connexion />}> </Route>
       <Route path="/enregistrement" element={<Enregistrement />}> </Route>
+      <Route path="/profil" element={<Profil />}> </Route>
      
     </Routes>
   </BrowserRouter>
@@ -23,3 +25,6 @@ function App() {
 }
 
 export default App;
+
+
+
