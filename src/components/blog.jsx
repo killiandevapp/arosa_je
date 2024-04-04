@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import bckBlog from "../images/backgroundBlog.png";
 import bckBlogMob from "../images/backgroundBlogMobile.png";
-import "../styles/blog.css";
 import data from '../data/data.json';
 import Header from './header'
 
