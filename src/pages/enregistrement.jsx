@@ -2,12 +2,33 @@
 import React from "react";
 import '../styles/enregistrement.css'
 import { useState } from "react";
+import axios from 'axios';
 
 export default function Enregistrement() {
     const [getDataEnregistrement, setGetDataEnregistrement] = useState({
         "login": '',
         "password": ''
     });
+
+    function postRegister() {
+        var body = {
+            "name": "tom",
+            "firstname": "vincent",
+            "email": "ikikikikiki@gmail.com",
+            "adress": "2 de qi",
+            "zip": 31700,
+            "city": "Nice",
+            "phone": "0676969895",
+            "password": "kiki",
+            "role": "user",
+            "lastconx": "2024-05-16T14:26:00Z",
+            "idadvice": null
+
+        }
+        
+      const response = axios.post("http://127.0.0.1:8000/user/create/", body)
+      console.log(response);
+    }
     return (
         <>
             <div className="container">
@@ -71,8 +92,8 @@ export default function Enregistrement() {
                         </div>
                     </div>
                     <label htmlFor="botaniste">Botaniste</label>
-                    <input type="checkbox" name="botaniste" id="" placeholder="botaniste"/>
-                    <button type="submit">S'enregistrer</button>
+                    <input type="checkbox" name="botaniste" id="" placeholder="botaniste" />
+                    <button type="submit" onClick={()=> {postRegister()}}>S'enregistrer</button>
                 </form>
             </div>
             <div className="icon-container">
