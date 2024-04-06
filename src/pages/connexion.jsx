@@ -37,7 +37,7 @@ export default function Connexion() {
             </div>
             <div id="div2CtnConnexion">
                 <p>J’ai <span className="colorGrenn">oublié  mon mot de passe </span></p>
-                <p>Pas encore inscrit ? <span className="colorGrenn"> Creér mon compte</span></p>
+                <p>Pas encore inscrit ? <a href="/enregistrement" className="colorGrenn"> Creér mon compte</a></p>
 
                 {/* Contenu du deuxième conteneur */}
             </div>

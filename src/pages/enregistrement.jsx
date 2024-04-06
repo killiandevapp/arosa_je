@@ -52,13 +52,13 @@ export default function Enregistrement() {
                     <div className="form-group">
                         <div className="half">
                             <label htmlFor="adresseEmail">Adresse e-mail:</label>
-                            <input type="text" id="adresse" name="adresse" required />
+                            <input type="text" id="adresseEmail" name="adresse" required />
                             <img src={require("../images/emailLogo.png")} alt="" srcset="" />
 
                         </div>
                         <div className="half">
                             <label htmlFor="telephone">Téléphone:</label>
-                            <input type="telehone" id="adresseEmail" name="adresseEmail" required />
+                            <input type="telehone" id="telephone" name="telephone" required />
                             <img src={require("../images/emailLogo.png")} alt="" srcset="" />
 
                         </div>
@@ -92,8 +92,8 @@ export default function Enregistrement() {
                         </div>
                     </div>
                     <label htmlFor="botaniste">Botaniste</label>
-                    <input type="checkbox" name="botaniste" id="" placeholder="botaniste" />
-                    <button type="submit" onClick={()=> {postRegister()}}>S'enregistrer</button>
+                    <input type="checkbox" name="botaniste" id="botaniste" placeholder="botaniste" />
+                    <button type="submit" id="enregistrer" onClick={()=> {postRegister()}}>S'enregistrer</button>
                 </form>
             </div>
             <div className="icon-container">

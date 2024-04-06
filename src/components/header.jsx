@@ -1,6 +1,6 @@
 import { Fragment, useEffect } from "react";
 import { Disclosure } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon, UserIcon } from "@heroicons/react/24/outline";
 // import Reglage from '../reglages/reglages'
 import { Link } from "react-router-dom";
 import Logo from "../images/22.png";
@@ -8,9 +8,8 @@ import Logo from "../images/22.png";
 // import store from '../redux/store'
 
 const navigation = [
-  { name: "Patient", href: "/info", current: true },
-  { name: "Blog", href: "/infoBlog", current: false },
-  { name: "Stock", href: "/stock", current: false },
+  { name: "Info", href: "/info", current: true },
+  { name: "Blog", href: "/blog", current: false },
   { name: "Profil", href: "/profil", current: false },
 ];
 
@@ -56,22 +55,42 @@ export default function Navbarv2({ pageAcutelle }) {
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <>
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className={classNames(
-                            item.current
-                              ? "bg-[#1791EE] text-white underline"
-                              : "text-gray-800 hover:underline hover:bg-sky-200 hover:text-gray-600",
-                            "rounded-md px-3 py-2 text-sm font-medium"
-                          )}
-                          aria-current={() => {
-                            // store.dispatch(showCurrentPage(item.name));
-                            item.current = "page";
-                          }}
-                        >
-                          {item.name}
-                        </a>
+                        {item.name === "Profil" ? (
+                          <Link
+                            key={item.name}
+                            to={item.href}
+                            className={classNames(
+                              item.current
+                                ? "bg-[#1791EE] text-white underline"
+                                : "text-gray-800 hover:underline hover:bg-sky-200 hover:text-gray-600",
+                              "rounded-md px-3 py-2 text-sm font-medium"
+                            )}
+                            aria-current={() => {
+                              // store.dispatch(showCurrentPage(item.name));
+                              item.current = "page";
+                            }}
+                          >
+                            <UserIcon className="h-5 w-5 inline-block mr-2" />
+                            <span className="sr-only">{item.name}</span>
+                          </Link>
+                        ) : (
+                          <Link
+                            key={item.name}
+                            to={item.href}
+                            className={classNames(
+                              item.current
+                                ? "bg-[#1791EE] text-white underline"
+                                : "text-gray-800 hover:underline hover:bg-sky-200 hover:text-gray-600",
+                              "rounded-md px-3 py-2 text-sm font-medium"
+                            )}
+                            aria-current={() => {
+                              // store.dispatch(showCurrentPage(item.name));
+                              item.current = "page";
+                            }}
+                          >
+                            {item.name}
+                          </Link>
+                        )}
                       </>
                     ))}
                   </div>
@@ -98,7 +117,14 @@ export default function Navbarv2({ pageAcutelle }) {
                   )}
                   aria-current={item.current ? "page" : undefined}
                 >
-                  {item.name}
+                  {item.name === "Profil" ? (
+                    <>
+                      <UserIcon className="h-5 w-5 inline-block mr-2" />
+                      <span className="sr-only">{item.name}</span>
+                    </>
+                  ) : (
+                    item.name
+                  )}
                 </Disclosure.Button>
               ))}
             </div>

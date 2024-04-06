@@ -62,7 +62,9 @@ export default function MyProfilePage() {
               <img src={address} alt="address" className="icons" />
               {userData.street + " " + userData.city + " " + userData.zip}
             </p>
-            <button className="button-modifier" onClick={toggleEditing}>
+            <button 
+            id="editButton"
+            className="button-modifier" onClick={toggleEditing}>
               Modifier mon profil
             </button>
         </div>
@@ -89,30 +91,35 @@ export default function MyProfilePage() {
     return (
       <form className="profile-edit" onSubmit={handleSubmit}>
         <input
+        id="firstName"
           type="text"
           name="firstName"
           value={userData.firstName}
           onChange={handleChanges}
         />
         <input
+        id="name"
           type="text"
           name="name"
           value={userData.name}
           onChange={handleChanges}
         />
         <input
+        id="mail"
           type="text"
           name="mail"
           value={userData.mail}
           onChange={handleChanges}
         />
         <input
+        id="phone"
           type="text"
           name="phone"
           value={userData.phone}
           onChange={handleChanges}
         />
         <input
+        id="address"
           type="text"
           name="address"
           value={
@@ -124,8 +131,12 @@ export default function MyProfilePage() {
           }
           onChange={handleChanges}
         />
-        <button type="submit">Save</button>
-        <button type="button" onClick={toggleEditing}>
+        <button 
+          id="saveButton"
+          type="submit">Save</button>
+        <button 
+          id="cancelButton"
+          type="button" onClick={toggleEditing}>
           Cancel
         </button>
       </form>
