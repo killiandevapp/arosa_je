@@ -17,7 +17,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Navbarv2({ pageAcutelle }) {
+export default function Navbarv2({ pageAcutelle}) {
   useEffect(() => {
     navigation.forEach((item) => {
       if (item.name === pageAcutelle) {
@@ -26,7 +26,7 @@ export default function Navbarv2({ pageAcutelle }) {
       item.current = false;
       }
     });
-  }, []);
+  }, [pageAcutelle]);
   return (
     <Disclosure as="nav" className="bg-white shadow-xl sticky top-0 z-10">
       {({ open }) => (
