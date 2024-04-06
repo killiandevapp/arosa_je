@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon, UserIcon } from "@heroicons/react/24/outline";
 // import Reglage from '../reglages/reglages'
@@ -10,7 +10,7 @@ import Logo from "../images/22.png";
 const navigation = [
   { name: "Info", href: "/info", current: true },
   { name: "Blog", href: "/blog", current: false },
-  { name: "Profil", href: "/profil", current: false },
+  { name: "Profil", href: "/profil", current: false }
 ];
 
 function classNames(...classes) {
@@ -19,11 +19,11 @@ function classNames(...classes) {
 
 export default function Navbarv2({ pageAcutelle }) {
   useEffect(() => {
-    navigation.map((item) => {
+    navigation.forEach((item) => {
       if (item.name === pageAcutelle) {
-        item.current = true;
+      item.current = true;
       } else {
-        item.current = false;
+      item.current = false;
       }
     });
   }, []);

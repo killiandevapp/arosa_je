@@ -5,10 +5,11 @@ import { useState } from "react";
 import axios from 'axios';
 
 export default function Enregistrement() {
-    const [getDataEnregistrement, setGetDataEnregistrement] = useState({
-        "login": '',
-        "password": ''
-    });
+    //desactiver pour les tests
+   //const [getDataEnregistrement, setGetDataEnregistrement] = useState({
+   //    "login": '',
+   //    "password": ''
+   //});
 
     function postRegister() {
         var body = {
