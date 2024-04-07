@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import '../styles/connexion.css'
 
+
 export default function Connexion() {
     const [getData, setGetData] = useState({
         "login": '',
         "password": ''
     });
 
-    console.log(getData);
+
+    
 
     return (
         <section id="sctConnexion1">
@@ -30,7 +32,7 @@ export default function Connexion() {
                         </div>
                     </div>
                     <div id="ctnBtnConnexion">
-                        <button>Connexion</button>
+                        <button onClick={()=> {}}>Connexion</button>
                     </div>
 
                 </div>

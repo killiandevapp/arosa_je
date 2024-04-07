@@ -3,6 +3,7 @@ import bckBlog from "../images/backgroundBlog.png";
 import bckBlogMob from "../images/backgroundBlogMobile.png";
 import data from '../data/data.json';
 import Header from './header'
+import '../styles/blog.css'
 
 export default function Blog() {
   console.log(data);
