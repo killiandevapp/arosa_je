@@ -6,17 +6,14 @@ import axios from 'axios';
 
 export default function Enregistrement() {
     const [userData, setUserData] = useState({
-        name: "",
-        firstname: "",
-        email: "",
-        adress: "",
-        zip: 0,
-        city: "",
-        phone: "",
-        password: "",
-        role: "user", // Par défaut, le rôle est utilisateur
-        lastconx: new Date().toLocaleDateString('fr'),
-        idadvice: null
+        "fullname": "killian vcfffnt",
+        "email": "kiki1rferfe234@example.com",
+        "address": "123 Maaferfple Street",
+        "password":"12fer344",
+        "zip": 12345,
+        "city": "Springfield",
+        "phone": "5558-12834",
+        "role": "owner"
     });
 
     const [isBotaniste, setIsBotaniste] = useState(false);
@@ -53,14 +50,10 @@ export default function Enregistrement() {
                 <p>Informations personnelles</p>
                 <form>
                     <div className="form-group">
+                       
                         <div className="half">
-                            <label htmlFor="nom">Nom:</label>
-                            <input type="text" id="nom" name="name" value={userData.name} onChange={handleChange} required />
-                            <img src={require("../images/emailLogo.png")} alt="" srcset="" />
-                        </div>
-                        <div className="half">
-                            <label htmlFor="prenom">Prénom:</label>
-                            <input type="text" id="prenom" name="firstname" value={userData.firstname} onChange={handleChange} required />
+                            <label htmlFor="fullname">Nom complet :</label>
+                            <input type="text" id="fullname" name="fullname" value={userData.fullname} onChange={handleChange} required />
                             <img src={require("../images/emailLogo.png")} alt="" srcset="" />
                         </div>
                     </div>
