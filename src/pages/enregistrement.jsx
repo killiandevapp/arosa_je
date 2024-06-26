@@ -40,7 +40,8 @@ export default function Enregistrement() {
     const handleEnregistrement = () => {
         // Effectuez ici les actions nécessaires pour enregistrer les données
         console.log("Données d'enregistrement :", userData);
-        const response = axios.post("http://127.0.0.1:8000/user/create/", userData)
+        const response = axios.post("http://localhost:8000/user/signup", userData)
+        console.log(response);
     
     };
 

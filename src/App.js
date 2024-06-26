@@ -8,6 +8,8 @@ import Connexion from './pages/connexion';
 import Enregistrement from './pages/enregistrement';
 import Profil from './pages/profil';
 
+import Inscription from './pages/co';
+
 function App() {
   return (
     <BrowserRouter>
@@ -17,6 +19,7 @@ function App() {
       <Route path="/connexion" element={<Connexion />}> </Route>
       <Route path="/enregistrement" element={<Enregistrement />}> </Route>
       <Route path="/profil" element={<Profil />}> </Route>
+      <Route path="/inscription" element={<Inscription />}> </Route>
      
     </Routes>
   </BrowserRouter>
