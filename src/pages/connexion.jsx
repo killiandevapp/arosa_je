@@ -61,8 +61,8 @@ import axiosInstance from '../api/conf';
 
 export default function Connexion() {
     const [getData, setGetData] = useState({
-        "email": "kiki1rferfe234@example.com",
-        "password":"12fer344"
+        "email": "killianvincent@example.com",
+        "password":"kiki1234"
     });
 
     async function triggerConnection() {

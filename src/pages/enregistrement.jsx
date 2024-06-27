@@ -6,13 +6,13 @@ import axios from 'axios';
 
 export default function Enregistrement() {
     const [userData, setUserData] = useState({
-        "fullname": "killian vcfffnt",
-        "email": "kiki1rferfe234@example.com",
+        "fullname": "killian vincent",
+        "email": "killianvincent@example.com",
         "address": "123 Maaferfple Street",
-        "password":"12fer344",
+        "password":"kiki1234",
         "zip": 12345,
         "city": "Springfield",
-        "phone": "5558-12834",
+        "phone": "598-12834",
         "role": "owner"
     });
 
