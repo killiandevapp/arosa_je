@@ -4,6 +4,10 @@ import Cookies from 'js-cookie';
 
 const baseURL = 'http://localhost:8000'; // Assurez-vous que c'est la bonne URL de votre backend
 
+
+
+// Autentification
+
 const axiosInstance = axios.create({
   baseURL: baseURL,
   timeout: 5000,
@@ -37,5 +41,54 @@ axiosInstance.interceptors.request.use(
 
 );
 
+async function Connecte(getData) {
+  try {
+      const response = await axiosInstance.post('/user/signin', getData);
+      console.log(response.data);
 
-export default axiosInstance;
+      if (response.data && response.data.access_token) {
+          localStorage.setItem('access_token', response.data.access_token);
+          localStorage.setItem('user_info', JSON.stringify(response.data.user));
+          console.log('Connexion réussie !');
+          return response.data; // Retournez les données de réponse
+      }
+  } catch (error) {
+      console.error('Erreur de connexion :', error.response ? error.response.data : error.message);
+      throw error; // Relancez l'erreur pour la gérer dans le composant
+  }
+}
+
+// Advices
+async function PostAdvice(formData) {
+  const response = await axiosInstance.post('http://localhost:8000/advice/create', formData, {
+      headers: {
+          'Content-Type': 'multipart/form-data'
+      }
+  });
+  return response;
+}
+
+async function GetALLAdvice(){
+
+  const response = axiosInstance.get('http://localhost:8000/advice');
+  return response;
+
+}
+
+
+// Catégory
+
+
+async function GetALLCat(){
+
+  const response = axiosInstance.get('http://localhost:8000/category');
+  return response;
+
+}
+
+
+
+
+export {Connecte , PostAdvice, GetALLCat, GetALLAdvice}; 
+
+

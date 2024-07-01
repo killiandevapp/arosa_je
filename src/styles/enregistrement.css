@@ -78,7 +78,7 @@
     display: flex;
 }
 
-button {
+/* button {
     width: 100%;
     padding: 10px;
     background-color: #5AD058;
@@ -87,11 +87,11 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
+} */
 
-button:hover {
+/* button:hover {
     background-color: #439c41;
-}
+} */
 
 .icon-container {
     text-align: center;

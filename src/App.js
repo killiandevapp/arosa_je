@@ -7,7 +7,7 @@ import { Route } from 'react-router-dom';
 import Connexion from './pages/connexion';
 import Enregistrement from './pages/enregistrement';
 import Profil from './pages/profil';
-import Advice from './pages/advice';
+import Advicee from './pages/advice';
 
 import Inscription from './pages/co';
 
@@ -21,7 +21,7 @@ function App() {
       <Route path="/enregistrement" element={<Enregistrement />}> </Route>
       <Route path="/profil" element={<Profil />}> </Route>
       <Route path="/inscription" element={<Inscription />}> </Route>
-      <Route path="/advice" element={<Advice />}> </Route>
+      <Route path="/advice" element={<Advicee />}> </Route>
      
     </Routes>
   </BrowserRouter>

@@ -1,12 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import bckBlog from "../images/backgroundBlog.png";
 import bckBlogMob from "../images/backgroundBlogMobile.png";
 import data from '../data/data.json';
 import Header from './header'
 import '../styles/blog.css'
+import { GetALLAdvice } from "../api/conf";
+import likeIcone from "../images/likeIcon.png"
 
 export default function Blog() {
   console.log(data);
+  const [dataAdvice, setDataAdvice] = useState()
+  console.log(dataAdvice);
   useEffect(() => {
     const bckBlogId = document.getElementById('bckBlogId');
     const mediaQuery = window.matchMedia('(max-width: 600px)');
@@ -20,6 +24,11 @@ export default function Blog() {
     };
 
     handleMediaChange(mediaQuery);
+    const res = GetALLAdvice()
+    res.then((e)=> {setDataAdvice(e.data.advices)})
+
+
+
 
 }, []);
 
@@ -37,25 +46,37 @@ export default function Blog() {
           </div>
         </div>
       </section>
-      {data.articles.map(art => (
-        <section className={"sctGenblog"} key={art.id}>
+      {dataAdvice ? (
+      dataAdvice.map(art => (
+        <section className={"sctGenblog"} key={art.id_advice}>
           <div className="ctnGenBlog">
             <div className="ssCtn1GenBlog">
-              <img src={bckBlog} alt="" />
+            <img
+                    src={`http://127.0.0.1:8000${art.picture}`}
+                    alt=""
+                  />
+              
             </div>
             <div className="ssCtn2GenBlog">
               <div>
                 <h2>{art.title}</h2>
-                <p>{art.paragraphBlog}</p> {/* Correction de la propriété ici */}
-                <div>
-                  <p className="pAuteurBlog">{art.auteur}</p>
-                  <p className="pDateBlog">{art.date}</p>
+                <p>{art.description}</p> {/* Correction de la propriété ici */}
+                <div className="!justify-start">
+                  <img className="!w-[25px]" src={likeIcone} alt="" srcset="" />
+                  <p>{art.like}</p>
                 </div>
+
               </div>
             </div>
           </div>
+
+          <div>
+
+
+          </div>
         </section>
-      ))}
+      ))
+    ): null}
       
 
 

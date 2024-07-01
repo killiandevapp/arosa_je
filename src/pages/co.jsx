@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 const Inscription = () => {
   const [formData, setFormData] = useState({
@@ -17,20 +17,20 @@ const Inscription = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://127.0.0.1:8000/user/signup', formData);
-      console.log(response);
-      if (response.status === 201) {
-        alert('Inscription réussie !');
-        // Rediriger vers la page de connexion ou autre
-      }
-    } catch (error) {
-      console.error('Erreur lors de l\'inscription:', error);
-      alert('Erreur lors de l\'inscription. Veuillez réessayer.');
-    }
-  };
+   const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await axios.post('http://127.0.0.1:8000/user/signup', formData);
+  //     console.log(response);
+  //     if (response.status === 201) {
+  //       alert('Inscription réussie !');
+  //       // Rediriger vers la page de connexion ou autre
+  //     }
+  //   } catch (error) {
+  //     console.error('Erreur lors de l\'inscription:', error);
+  //     alert('Erreur lors de l\'inscription. Veuillez réessayer.');
+  //   }
+   };
 
   return (
     <form onSubmit={handleSubmit}>

@@ -2,7 +2,7 @@
 import React from "react";
 import '../styles/enregistrement.css'
 import { useState } from "react";
-import axios from 'axios';
+// import axios from 'axios';
 
 export default function Enregistrement() {
     const [userData, setUserData] = useState({
@@ -36,9 +36,9 @@ export default function Enregistrement() {
 
     const handleEnregistrement = () => {
         // Effectuez ici les actions nécessaires pour enregistrer les données
-        console.log("Données d'enregistrement :", userData);
-        const response = axios.post("http://localhost:8000/user/signup", userData)
-        console.log(response);
+        // console.log("Données d'enregistrement :", userData);
+        // const response = axios.post("http://localhost:8000/user/signup", userData)
+        // console.log(response);
     
     };
 

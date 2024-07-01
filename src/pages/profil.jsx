@@ -150,29 +150,31 @@
 //   );
 // }
 
+import React, { useState, useEffect } from 'react';
+import Header from '../components/header'
 
-import React, { useState } from 'react';
-import axiosInstance from '../api/conf';
 import {
-  Accordion,
-  AccordionHeader,
-  AccordionBody,
+    Accordion,
+    AccordionHeader,
+    AccordionBody,
 } from "@material-tailwind/react";
+
+import Advice from '../components/adviceComponent';
 
 
 function Icon({ id, open }) {
-  return (
-      <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
-          className={`${open ? "rotate-180" : ""} h-5 w-5 transition-transform`}
-      >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-      </svg>
-  );
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className={`${open ? "rotate-180" : ""} h-5 w-5 transition-transform`}
+        >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
+    );
 }
 
 export default function Profil() {
@@ -180,111 +182,134 @@ export default function Profil() {
     const [openAcc1, setOpenAcc1] = useState(true);
     const handleOpenAcc1 = () => setOpenAcc1((cur) => !cur);
 
+    const [openAcc2, setOpenAcc2] = useState(true);
+    const handleOpenAcc2 = () => setOpenAcc2((cur) => !cur);
+    const [formData, setFormData] = useState({
+        title: '',
+        description: '',
+        like: 0,
+        id_category: '',
+        picture: null
+    });
+
+    const [categories, setCategories] = useState([]);
+    const [previewUrl, setPreviewUrl] = useState('');
+
+
+
+    const handleChange = (e) => {
+        const { name, value, type } = e.target;
+        setFormData(prevState => ({
+          ...prevState,
+          [name]: type === 'number' ? parseInt(value) : value
+        }));
+      };
     
+      const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        setFormData(prevState => ({ ...prevState, picture: file }));
+        
+        if (file) {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            setPreviewUrl(reader.result);
+          };
+          reader.readAsDataURL(file);
+        } else {
+          setPreviewUrl('');
+        }
+      };
     
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData);
+        if(formData){
+
+        }
+        // Ici, vous pouvez envoyer les données à votre backend
+      };
+
+
 
     return (
-      <>
-                 <div className="justify-center items-center my-5 mx-8 rounded-xl shadow-xl border border-gray-300">
+        <>
+          <Header/>
+
+            <div className="justify-center items-center my-5 mx-8 rounded-xl shadow-xl border border-gray-300 overflow-hidden">
                 <>
                     <Accordion className="mb-5" open={openAcc1} icon={<Icon id={1} open={!openAcc1} />}>
                         <div className="mx-5 mt-2">
                             <AccordionHeader className="text-md mb-2" onClick={handleOpenAcc1}>
 
 
-                                <svg width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g clipPath="url(#clip0_640_2)">
-                                        <circle cx="51" cy="36" r="22" stroke="#1791EE" strokeWidth="6" />
-                                        <path d="M90 102.5C90 120.62 72.9483 136 51 136C29.0517 136 12 120.62 12 102.5C12 84.38 29.0517 69 51 69C72.9483 69 90 84.38 90 102.5Z" stroke="#1791EE" strokeWidth="6" />
-                                    </g>
-                                    <rect x="3" y="3" width="94" height="94" rx="47" stroke="black" strokeWidth="6" />
-                                    <defs>
-                                        <clipPath id="clip0_640_2">
-                                            <rect width="100" height="100" rx="50" fill="white" />
-                                        </clipPath>
-                                    </defs>
-                                </svg>
+
                                 Informations générales
                             </AccordionHeader>
-                            <AccordionBody> 
+                            <AccordionBody>
                                 {/* Information générale du client */}
-                                <div id="ctnGenInfoPatient" className="grid grid-cols-">
-                                    <div id="ctnInfoGeneralePatientTop" className="col-start-1 col-span-2">
-
-
-                                        <p className="font-bold text-xl/8">
-                                        </p>
-                                    </div>
-                                    <div id="ctnInfoGeneralePatientMiddle" className="col-start-1 col-end-2 flex mb-5 max-sm:flex-col">
-                                        <span className="mr-3"></span>
-                                        <span className="mr-3"></span>
-                                        <span className="font-semibold"> </span>
-
-                                    </div>
-                                    <div className="col-start-3 col-end-4 row-start-1 row-end-2 flex justify-end">
-
-
-                                    </div>
-                                    <div className="col-start-1 col-end-2 row-start-3 row-end-4" id="ctnInfoGeneralePatientBottomLeft">
-
-                                        <span className="text-stone-500 font-semibold mr-3">Code Orthop : </span>
-                                        <p><span className="text-stone-500 font-semibold">Date installation : </span></p>
-                                        <p><span className="text-stone-500 font-semibold">Forfait : </span></p>
-
-                                        <p><span className="text-stone-500 font-semibold">Télésuivi : </span></p>
-
-                                       
-
-                                        <p className="mt-5"><span className="text-stone-500 font-semibold">Prescripteur : </span></p>
-                                        <p className="mb-5"><span className="text-stone-500 font-semibold">Fin de prescription : </span></p>
-                                        <p className="mb-5"><span className="text-stone-500 font-semibold ">  </span></p>
-                                        
-
-
-                                    </div>
-                                    {/* Ligne séparateur */}
-                                    <div className="h-divider">
-                                        <div className="itemShadow"></div>
-                                    </div>
-
-                                    {/* Information adresse et téléphone */}
-                                    <div className="col-start-2 col-end-3 row-start-3 row-end-4 flex flex-col">
-                                        <div className="flex">
-                                            <p className="font-semibold	text-stone-500"></p>
-                                            
-                                        </div>
-                                
-
-                                        <p className="flex flex-col mb-5 text-black">
-                                           
-                                        </p>
-
-                                        <div className="flex mb-5">
-
-                                           
-
-                                        </div>
+                                <div >
 
 
 
 
 
-                                    </div>
 
-
-                                  
                                 </div>
 
                                 {/* Information livraison */}
 
 
-                         
+
                             </AccordionBody>
                         </div>
                     </Accordion>
 
                 </>
             </div>
-         </> 
+
+
+
+
+
+            <div className="justify-center items-center my-5 mx-8 rounded-xl shadow-xl border border-gray-300 overflow-hidden">
+
+                <Accordion className="mb-5" open={openAcc2} icon={<Icon id={1} open={!openAcc2} />}>
+                    <div className="mx-5 mt-2">
+                        <AccordionHeader className="text-md mb-2" onClick={handleOpenAcc2}>
+
+
+
+                            Conseils
+                        </AccordionHeader>
+                        <AccordionBody>
+                            {/* Information générale du client */}
+                            <div >
+
+
+                                <h2>Création de conseils</h2>
+                                <div className="max-w-md mx-auto mt-10 bg-white p-8 border border-gray-300 rounded-lg shadow-lg">
+                         
+                                      <Advice/>
+                                </div>
+
+
+
+
+
+
+                            </div>
+
+                            {/* Information livraison */}
+
+
+
+                        </AccordionBody>
+                    </div>
+                </Accordion>
+
+            </div>
+
+
+        </>
     );
 }
