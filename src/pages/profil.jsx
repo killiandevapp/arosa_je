@@ -160,6 +160,7 @@ import {
 } from "@material-tailwind/react";
 
 import Advice from '../components/adviceComponent';
+import ProfilDetaille from '../components/profils/detailleProfil';
 
 
 function Icon({ id, open }) {
@@ -249,7 +250,7 @@ export default function Profil() {
                                 {/* Information générale du client */}
                                 <div >
 
-
+                                <ProfilDetaille/>
 
 
 
