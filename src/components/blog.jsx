@@ -16,28 +16,38 @@ export default function Blog() {
     const mediaQuery = window.matchMedia('(max-width: 600px)');
 
     const handleMediaChange = (event) => {
-        if (event.matches) {
-            bckBlogId.setAttribute('src', bckBlogMob);
-        } else {
-            bckBlogId.setAttribute('src', bckBlog);
-        }
+      if (event.matches) {
+        bckBlogId.setAttribute('src', bckBlogMob);
+      } else {
+        bckBlogId.setAttribute('src', bckBlog);
+      }
     };
 
     handleMediaChange(mediaQuery);
-    const res = GetALLAdvice()
-    res.then((e)=> {setDataAdvice(e.data.advices)})
+    console.log('heryyy');
+    try{
+          const res = GetALLAdvice()
+
+    }catch(error){
+      console.log(error);
+    }
+    
+    
 
 
 
 
-}, []);
+
+
+
+  }, []);
 
 
   return (
     <>
-     <Header/>
+      <Header />
       <section id="sct1blog">
-        <img id="bckBlogId"  alt="" srcSet="" />
+        <img id="bckBlogId" alt="" srcSet="" />
         <div id="ctn1Blog1"><h1>Blog Arosa-je</h1></div>
         <div id="ctn2Blog1">
           <div id="ssCtnBlog1">
@@ -47,37 +57,37 @@ export default function Blog() {
         </div>
       </section>
       {dataAdvice ? (
-      dataAdvice.map(art => (
-        <section className={"sctGenblog"} key={art.id_advice}>
-          <div className="ctnGenBlog">
-            <div className="ssCtn1GenBlog">
-            <img
-                    src={`http://127.0.0.1:8000${art.picture}`}
-                    alt=""
-                  />
-              
-            </div>
-            <div className="ssCtn2GenBlog">
-              <div>
-                <h2>{art.title}</h2>
-                <p>{art.description}</p> {/* Correction de la propriété ici */}
-                <div className="!justify-start">
-                  <img className="!w-[25px]" src={likeIcone} alt="" srcset="" />
-                  <p>{art.like}</p>
-                </div>
+        dataAdvice.map(art => (
+          <section className={"sctGenblog"} key={art.id_advice}>
+            <div className="ctnGenBlog">
+              <div className="ssCtn1GenBlog">
+                <img
+                  src={`http://127.0.0.1:8000${art.picture}`}
+                  alt=""
+                />
 
               </div>
+              <div className="ssCtn2GenBlog">
+                <div>
+                  <h2>{art.title}</h2>
+                  <p>{art.description}</p> {/* Correction de la propriété ici */}
+                  <div className="!justify-start">
+                    <img className="!w-[25px]" src={likeIcone} alt="" srcset="" />
+                    <p>{art.like}</p>
+                  </div>
+
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div>
+            <div>
 
 
-          </div>
-        </section>
-      ))
-    ): null}
-      
+            </div>
+          </section>
+        ))
+      ) : null}
+
 
 
 

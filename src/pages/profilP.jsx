@@ -161,6 +161,8 @@ import {
 
 import Advice from '../components/adviceComponent';
 import ProfilDetaille from '../components/profils/detailleProfil';
+import GardeBotaniste from '../components/garde/gardeBotaniste';
+import GardeProprietaire from '../components/garde/gardeProprietaire';
 
 
 function Icon({ id, open }) {
@@ -178,13 +180,19 @@ function Icon({ id, open }) {
     );
 }
 
-export default function Profil() {
+export default function ProfilProprietaire() {
     const [dataProfil, setDataProfil] = useState();
     const [openAcc1, setOpenAcc1] = useState(true);
     const handleOpenAcc1 = () => setOpenAcc1((cur) => !cur);
 
     const [openAcc2, setOpenAcc2] = useState(true);
     const handleOpenAcc2 = () => setOpenAcc2((cur) => !cur);
+
+    
+    const [openAcc3, setOpenAcc3] = useState(true);
+    const handleOpenAcc3 = () => setOpenAcc3((cur) => !cur);
+
+
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -201,40 +209,40 @@ export default function Profil() {
     const handleChange = (e) => {
         const { name, value, type } = e.target;
         setFormData(prevState => ({
-          ...prevState,
-          [name]: type === 'number' ? parseInt(value) : value
+            ...prevState,
+            [name]: type === 'number' ? parseInt(value) : value
         }));
-      };
-    
-      const handleFileChange = (e) => {
+    };
+
+    const handleFileChange = (e) => {
         const file = e.target.files[0];
         setFormData(prevState => ({ ...prevState, picture: file }));
-        
+
         if (file) {
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            setPreviewUrl(reader.result);
-          };
-          reader.readAsDataURL(file);
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreviewUrl(reader.result);
+            };
+            reader.readAsDataURL(file);
         } else {
-          setPreviewUrl('');
+            setPreviewUrl('');
         }
-      };
-    
-      const handleSubmit = (e) => {
+    };
+
+    const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
-        if(formData){
+        if (formData) {
 
         }
         // Ici, vous pouvez envoyer les données à votre backend
-      };
+    };
 
 
 
     return (
         <>
-          <Header/>
+            <Header />
 
             <div className="justify-center items-center my-5 mx-8 rounded-xl shadow-xl border border-gray-300 overflow-hidden">
                 <>
@@ -243,14 +251,14 @@ export default function Profil() {
                             <AccordionHeader className="text-md mb-2" onClick={handleOpenAcc1}>
 
 
-
-                                Informations générales
+                             <p className='text-xl'>Informations générales</p>
+                                
                             </AccordionHeader>
                             <AccordionBody>
                                 {/* Information générale du client */}
                                 <div >
 
-                                <ProfilDetaille/>
+                                    <ProfilDetaille />
 
 
 
@@ -274,24 +282,23 @@ export default function Profil() {
 
             <div className="justify-center items-center my-5 mx-8 rounded-xl shadow-xl border border-gray-300 overflow-hidden">
 
-                <Accordion className="mb-5" open={openAcc2} icon={<Icon id={1} open={!openAcc2} />}>
+                <Accordion className="mb-5" open={openAcc3} icon={<Icon id={1} open={!openAcc3} />}>
                     <div className="mx-5 mt-2">
-                        <AccordionHeader className="text-md mb-2" onClick={handleOpenAcc2}>
+                        <AccordionHeader className="text-md mb-2" onClick={handleOpenAcc3}>
 
 
 
-                            Conseils
+                           <p className='text-xl'>Mes gardes</p> 
                         </AccordionHeader>
                         <AccordionBody>
                             {/* Information générale du client */}
                             <div >
 
 
-                                <h2>Création de conseils</h2>
-                                <div className="max-w-md mx-auto mt-10 bg-white p-8 border border-gray-300 rounded-lg shadow-lg">
-                         
-                                      <Advice/>
-                                </div>
+                       
+
+                                    <GardeProprietaire />
+                                
 
 
 

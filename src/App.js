@@ -6,7 +6,8 @@ import { Routes } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import Connexion from './pages/connexion';
 import Enregistrement from './pages/enregistrement';
-import Profil from './pages/profil';
+import ProfilBotaniste from './pages/profilB';
+import ProfilProprietaire from './pages/profilP';
 import Advicee from './pages/advice';
 import ProtectedRouteRole from './api/protected'
 
@@ -20,7 +21,15 @@ function App() {
         <Route path="/blog" element={<Blog />}> </Route>
         <Route path="/connexion" element={<Connexion />}> </Route>
         <Route path="/enregistrement" element={<Enregistrement />}> </Route>
-        <Route path="/profil" element={<Profil />}> </Route>
+
+
+        <Route path="/profilb" element={<ProfilBotaniste />}> </Route>
+
+
+        <Route path="/profilp" element={<ProfilProprietaire />}> </Route>
+        
+
+
         <Route path="/inscription" element={<Inscription />}> </Route>
         <Route element={<ProtectedRouteRole allowedRoles={['owner']} />}>
           <Route path="/advice" element={<Advicee />} />

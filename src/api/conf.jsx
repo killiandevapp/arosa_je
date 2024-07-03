@@ -1,6 +1,8 @@
 // src/api/axios.js
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import ModalError from '../components/error/modalError';
+import { redirect } from 'react-router-dom';
 
 const baseURL = 'http://localhost:8000'; // Assurez-vous que c'est la bonne URL de votre backend
 
@@ -26,7 +28,7 @@ axiosInstance.interceptors.request.use(
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }
-    
+
     // Ajout du CSRF token pour les méthodes non sécurisées
     if (['post', 'put', 'patch', 'delete'].includes(config.method.toLowerCase())) {
       const csrfToken = Cookies.get('csrftoken');
@@ -34,7 +36,7 @@ axiosInstance.interceptors.request.use(
         config.headers['X-CSRFToken'] = csrfToken;
       }
     }
-    
+
     return config;
   },
   (error) => Promise.reject(error)
@@ -43,35 +45,45 @@ axiosInstance.interceptors.request.use(
 
 async function Connecte(getData) {
   try {
-      const response = await axiosInstance.post('/user/signin', getData);
-      console.log(response.data);
+    const response = await axiosInstance.post('/user/signin', getData);
+    console.log(response.data);
 
-      if (response.data && response.data.access_token) {
-          localStorage.setItem('access_token', response.data.access_token);
-          localStorage.setItem('user_info', JSON.stringify(response.data.user));
-          console.log('Connexion réussie !');
-          return response.data; // Retournez les données de réponse
-      }
+    if (response.data && response.data.access_token) {
+      localStorage.setItem('access_token', response.data.access_token);
+      localStorage.setItem('user_info', JSON.stringify(response.data.user));
+      console.log('Connexion réussie !');
+      return response.data; // Retournez les données de réponse
+    }
   } catch (error) {
-      console.error('Erreur de connexion :', error.response ? error.response.data : error.message);
-      throw error; // Relancez l'erreur pour la gérer dans le composant
+    console.error('Erreur de connexion :', error.response ? error.response.data : error.message);
+    throw error; // Relancez l'erreur pour la gérer dans le composant
   }
 }
 
 // Advices
 async function PostAdvice(formData) {
   const response = await axiosInstance.post('http://localhost:8000/advice/create', formData, {
-      headers: {
-          'Content-Type': 'multipart/form-data'
-      }
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
   });
   return response;
 }
 
-async function GetALLAdvice(){
+async function GetALLAdvice() {
 
-  const response = axiosInstance.get('http://localhost:8000/advice');
+  try{
+  const response = await axiosInstance.get('http://localhost:8000/advice');
+
+
   return response;
+
+  }catch (error){
+    alert('Vous avais une erreur ' + error.response.status +' . ' + error.response.status)
+     throw error;
+  }
+
+
 
 }
 
@@ -79,16 +91,26 @@ async function GetALLAdvice(){
 // Catégory
 
 
-async function GetALLCat(){
+async function GetALLCat() {
+  try {
+    const response = axiosInstance.get('http://localhost:8000/category');
+    return response;
+  } catch (error) {
+    <ModalError propserror={error} />
+  }
 
-  const response = axiosInstance.get('http://localhost:8000/category');
+
+}
+// Patient 
+
+function PostUpdatePorfil(formData) {
+  const response = axiosInstance.put('http://localhost:8000/user/update', formData);
   return response;
-
 }
 
 
 
 
-export {Connecte , PostAdvice, GetALLCat, GetALLAdvice}; 
+export { Connecte, PostAdvice, GetALLCat, GetALLAdvice, PostUpdatePorfil };
 
 
