@@ -2,19 +2,38 @@
 import React from "react";
 import '../styles/enregistrement.css'
 import { useState } from "react";
-// import axios from 'axios';
+import axios from 'axios';
 
 export default function Enregistrement() {
     const [userData, setUserData] = useState({
-        "fullname": "killian vincent",
-        "email": "killianvincent@example.com",
-        "address": "123 Maaferfple Street",
-        "password":"kiki1234",
+        "fullname": "kDi kiki",
+        "email": "ki3066@example.com",
+        "address": "123 Maafple Street",
+        "password": "kiki1234",
         "zip": 12345,
         "city": "Springfield",
         "phone": "598-12834",
-        "role": "owner"
+        "role": "botanist"
     });
+
+    // "fullname": "kiki kiki",
+    // "email": "kiki2307@example.com",
+    // "address": "123 Maafple Street",
+    // "password":"kiki1234",
+    // "zip": 12345,
+    // "city": "Springfield",
+    // "phone": "598-12804",
+    // "role": "owner"
+
+    
+    // "fullname": "kiki kiki",
+    // "email": "kiki2306@example.com",
+    // "address": "123 Maafple Street",
+    // "password":"kiki1234",
+    // "zip": 12345,
+    // "city": "Springfield",
+    // "phone": "598-12834",
+    // "role": "botanist"
 
     const [isBotaniste, setIsBotaniste] = useState(false);
 
@@ -37,9 +56,9 @@ export default function Enregistrement() {
     const handleEnregistrement = () => {
         // Effectuez ici les actions nécessaires pour enregistrer les données
         // console.log("Données d'enregistrement :", userData);
-        // const response = axios.post("http://localhost:8000/user/signup", userData)
-        // console.log(response);
-    
+        const response = axios.post("http://localhost:8000/user/signup", userData)
+        console.log(response);
+
     };
 
     return (
@@ -50,7 +69,7 @@ export default function Enregistrement() {
                 <p>Informations personnelles</p>
                 <form>
                     <div className="form-group">
-                       
+
                         <div className="half">
                             <label htmlFor="fullname">Nom complet :</label>
                             <input type="text" id="fullname" name="fullname" value={userData.fullname} onChange={handleChange} required />
@@ -94,7 +113,7 @@ export default function Enregistrement() {
                         </div>
                     </div>
                     <label htmlFor="botaniste">Botaniste</label>
-                    <input type="checkbox" name="botaniste" id="botaniste" checked={isBotaniste} onChange={handleBotanisteChange}/>
+                    <input type="checkbox" name="botaniste" id="botaniste" checked={isBotaniste} onChange={handleBotanisteChange} />
                     <button type="button" onClick={handleEnregistrement}>S'enregistrer</button>
                 </form>
             </div>

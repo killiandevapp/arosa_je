@@ -61,10 +61,19 @@ import {Connecte} from "../api/conf"
 // import axiosInstance from '../api/conf';
 
 export default function Connexion() {
-    const [getData, setGetData] = useState({
-        "email": "killianvincent@example.com",
-        "password":"kiki1234"
+    // const [getData, setGetData] = useState({
+    //     "email": "killianvincent@example.com",
+    //     "password":"kiki1234"
+    // });
+        const [getData, setGetData] = useState({
+            "email": "kiki2306@example.com",
+            "password":"kiki1234"
     });
+
+
+
+
+
 
     async function triggerConnection(e) {
         e.preventDefault(); // Empêche le comportement par défaut du bouton
