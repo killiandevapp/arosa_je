@@ -2,42 +2,44 @@
 import React from "react";
 import '../styles/enregistrement.css'
 import { useState } from "react";
-// import axios from 'axios';
+import axios from 'axios';
 
 export default function Enregistrement() {
     const [userData, setUserData] = useState({
-        "fullname": "killian vincent",
-        "email": "killianvincent@example.com",
-        "address": "123 Maaferfple Street",
-        "password":"kiki1234",
-        "zip": 12345,
-        "city": "Springfield",
-        "phone": "598-12834",
-        "role": "owner"
+        "fullname": "kigki brOape",
+        "email": "bagpOe@kiki.com",
+        "address": "123 le gStret",
+        "password":"kikg234",
+        "zip": 1245,
+        "city": "Springfmeld",
+        "phone": "548-1834",
+        "role": "botanist"
     });
 
     const [isBotaniste, setIsBotaniste] = useState(false);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setUserData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    };
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setUserData(prevState => ({
+    //         ...prevState,
+    //         [name]: value
+    //     }));
+    // };
 
-    const handleBotanisteChange = () => {
-        setIsBotaniste(prevState => !prevState); // Inverse la valeur actuelle de isBotaniste
-        setUserData(prevState => ({
-            ...prevState,
-            role: isBotaniste ? "utilisateur" : "botaniste"
-        }));
-    };
+    // const handleBotanisteChange = () => {
+    //     setIsBotaniste(prevState => !prevState); // Inverse la valeur actuelle de isBotaniste
+    //     setUserData(prevState => ({
+    //         ...prevState,
+    //         role: isBotaniste ? "utilisateur" : "botaniste"
+    //     }));
+    // };
 
     const handleEnregistrement = () => {
         // Effectuez ici les actions nécessaires pour enregistrer les données
         // console.log("Données d'enregistrement :", userData);
-        // const response = axios.post("http://localhost:8000/user/signup", userData)
+        const response = axios.post("http://localhost:8000/user/signup", userData)
+        return response;
+        console.log(response);
         // console.log(response);
     
     };
@@ -49,7 +51,7 @@ export default function Enregistrement() {
                 <p>Débutez dès maintenant chez arosa-je !</p>
                 <p>Informations personnelles</p>
                 <form>
-                    <div className="form-group">
+                    {/* <div className="form-group">
                        
                         <div className="half">
                             <label htmlFor="fullname">Nom complet :</label>
@@ -94,7 +96,7 @@ export default function Enregistrement() {
                         </div>
                     </div>
                     <label htmlFor="botaniste">Botaniste</label>
-                    <input type="checkbox" name="botaniste" id="botaniste" checked={isBotaniste} onChange={handleBotanisteChange}/>
+                    <input type="checkbox" name="botaniste" id="botaniste" checked={isBotaniste} onChange={handleBotanisteChange}/> */}
                     <button type="button" onClick={handleEnregistrement}>S'enregistrer</button>
                 </form>
             </div>

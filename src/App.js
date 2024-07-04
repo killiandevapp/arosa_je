@@ -22,12 +22,13 @@ function App() {
         <Route path="/connexion" element={<Connexion />}> </Route>
         <Route path="/enregistrement" element={<Enregistrement />}> </Route>
 
+        {/* <Route element={<ProtectedRouteRole allowedRoles={['botanist']} />}> */}
+          <Route path="/profilb" element={<ProfilBotaniste />}> </Route>
+        {/* </Route> */}
+        <Route element={<ProtectedRouteRole allowedRoles={['owner']} />}>
+          <Route path="/profilp" element={<ProfilProprietaire />}> </Route>
+        </Route>
 
-        <Route path="/profilb" element={<ProfilBotaniste />}> </Route>
-
-
-        <Route path="/profilp" element={<ProfilProprietaire />}> </Route>
-        
 
 
         <Route path="/inscription" element={<Inscription />}> </Route>

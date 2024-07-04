@@ -117,7 +117,7 @@ export default function GardeProprietaire() {
                         <div>
                             <h3 className="text-lg font-semibold">Gardiennage</h3>
                             {/* L'utilisateur peut demander a garder une plante */}
-                            {!etatGardiennage ? (
+                            {etatGardiennage ? (
                                 <>
                                     <p>Vous ne gardez pas de plante actuellement</p>
                                 </>
