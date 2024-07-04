@@ -1,6 +1,8 @@
 
 
 import React, { useEffect, useState } from "react";
+import { PostCreateCare } from "../../api/conf";
+import { testAdd } from "../../api/conf";
 
 
 
@@ -9,9 +11,15 @@ export default function GardeProprietaire() {
     const [triggerGarde, setTriggerGarde] = useState(false)
     // Data de mes gardes
     const [dataGarde, setDataGarde] = useState({
-        "title": '',
-        "description": ''
+
+        "title": 'garde une',
+        "description": 'je suis la description',
+        "started_at": new Date('05/10/2024'),
+        "ended_at": new Date('07/10/2024'),
+        "active": true
     })
+    
+
     // Booléen vérifiant si une garde est en cours
     const [etatGarde, setEtatGarde] = useState(false)
     // Booléen ouvre est ferme le formulaire de demande de garde
@@ -24,9 +32,11 @@ export default function GardeProprietaire() {
 
     // Ici je dois verifier si :
     // 1) l'utilisateur garde une plante (etatGarde)  --> garde
-    // 2) l'utilisateur ce fait garder une plante  (etatGardiennage) --> gardien
+    // 2) l'utilisateur ce fait garder une plante (etatGardiennage) --> gardien
+   
+   
     useEffect(() => {
-        
+
     }, [])
 
 
@@ -35,18 +45,23 @@ export default function GardeProprietaire() {
     // Function pour sauvegarder la garde
 
     function saveGarde() {
-
-
-        console.log('ici on sauvegarde la garde');
+    const res = PostCreateCare(dataGarde)
+    console.log('ici on sauvegarde la garde');
 
     }
+
+    function saveGarde2() {
+        const res = testAdd(dataGarde)
+        console.log('ici on sauvegarde la garde');
+    
+        }
 
 
 
 
     return (
         <>
-
+          <button onClick={()=>{saveGarde2()}}>tttttttttt</button>
             <div>
                 <div className="grid grid-cols-2 w-full">
                     <div className="flex justify-center">
@@ -84,7 +99,8 @@ export default function GardeProprietaire() {
                                                     <div>
                                                         <input value='Sauvegarder la garde' type="button" className="bg-[#5AD058] w-1/3 p-3 rounded-lg text-base mt-[15px] font-semibold text-white cursor-pointer"
                                                             onClick={() => { saveGarde() }}
-                                                        /> </div>
+                                                        />
+                                                    </div>
                                                 </div>
 
                                             </>

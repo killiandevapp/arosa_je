@@ -6,15 +6,34 @@ import axios from 'axios';
 
 export default function Enregistrement() {
     const [userData, setUserData] = useState({
-        "fullname": "kigki brOape",
-        "email": "bagpOe@kiki.com",
-        "address": "123 le gStret",
-        "password":"kikg234",
-        "zip": 1245,
-        "city": "Springfmeld",
-        "phone": "548-1834",
+        "fullname": "kDi kiki",
+        "email": "ki3066@example.com",
+        "address": "123 Maafple Street",
+        "password": "kiki1234",
+        "zip": 12345,
+        "city": "Springfield",
+        "phone": "598-12834",
         "role": "botanist"
     });
+
+    // "fullname": "kiki kiki",
+    // "email": "kiki2307@example.com",
+    // "address": "123 Maafple Street",
+    // "password":"kiki1234",
+    // "zip": 12345,
+    // "city": "Springfield",
+    // "phone": "598-12804",
+    // "role": "owner"
+
+    
+    // "fullname": "kiki kiki",
+    // "email": "kiki2306@example.com",
+    // "address": "123 Maafple Street",
+    // "password":"kiki1234",
+    // "zip": 12345,
+    // "city": "Springfield",
+    // "phone": "598-12834",
+    // "role": "botanist"
 
     const [isBotaniste, setIsBotaniste] = useState(false);
 
@@ -51,8 +70,8 @@ export default function Enregistrement() {
                 <p>Débutez dès maintenant chez arosa-je !</p>
                 <p>Informations personnelles</p>
                 <form>
-                    {/* <div className="form-group">
-                       
+                    <div className="form-group">
+
                         <div className="half">
                             <label htmlFor="fullname">Nom complet :</label>
                             <input type="text" id="fullname" name="fullname" value={userData.fullname} onChange={handleChange} required />

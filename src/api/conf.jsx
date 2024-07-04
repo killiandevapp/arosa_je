@@ -72,19 +72,50 @@ async function PostAdvice(formData) {
 
 async function GetALLAdvice() {
 
-  try{
-  const response = await axiosInstance.get('http://localhost:8000/advice');
+  try {
+    const response = await axiosInstance.get('http://localhost:8000/advice');
 
 
-  return response;
+    return response;
 
-  }catch (error){
-    alert('Vous avais une erreur ' + error.response.status +' . ' + error.response.status)
-     throw error;
+  } catch (error) {
+    alert('Vous avais une erreur ' + error.response.status + ' . ' + error.response.status)
+    throw error;
   }
 
 
 
+}
+// Botaniste 
+
+function GetListAttribute() {
+  const response = axiosInstance.get('http://localhost:8000/attribution')
+  return response;
+}
+function testAdd(formData) {
+  const response = axiosInstance.post('care/create-with-assignment', formData)
+  return response;
+}
+function GetListPostCare(id_care) {
+  const response = axiosInstance.get(`http://localhost:8000/attribution/care/${id_care}/posts`)
+  return response;
+}
+
+function GetDetailleCarePost(id_post) {
+  const response = axiosInstance.get(`http://localhost:8000/attribution/care/${id_post}/post`)
+  return response;
+}
+
+function PostCareComment(id_post, dataComment){
+  const response =  axiosInstance.post(`http://localhost:8000/attribution/create/care/${id_post}/post/comment`, dataComment)
+  return response;
+}
+
+
+// Care
+async function PostCreateCare(formData) {
+  const response = await axiosInstance.post('http://localhost:8000/care/create', formData)
+  return response;
 }
 
 
@@ -111,6 +142,18 @@ function PostUpdatePorfil(formData) {
 
 
 
-export { Connecte, PostAdvice, GetALLCat, GetALLAdvice, PostUpdatePorfil };
+export {
+  Connecte,
+  PostAdvice,
+  GetALLCat,
+  GetALLAdvice,
+  PostUpdatePorfil,
+  PostCreateCare,
+  GetListAttribute,
+  testAdd,
+  GetListPostCare,
+  GetDetailleCarePost,
+  PostCareComment
+};
 
 
