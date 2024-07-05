@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { GetListAttribute, GetListPostCare, GetDetailleCarePost, PostCareComment } from "../../api/conf";
-import Moment from 'react-moment';
+
 
 export default function GardeBotaniste() {
     // Trigger Garde
@@ -135,6 +135,7 @@ export default function GardeBotaniste() {
 
                 </div>
                 <div>
+                {/* Détataille de la garde */}
                     {!triggerGarde ? (
                         <>
                             <p>Surveillance de garde</p>

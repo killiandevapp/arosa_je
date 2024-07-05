@@ -10,6 +10,7 @@ import ProfilBotaniste from './pages/profilB';
 import ProfilProprietaire from './pages/profilP';
 import Advicee from './pages/advice';
 import ProtectedRouteRole from './api/protected'
+import ChoicesGardes from './pages/choicesGardes';
 
 import Inscription from './pages/co';
 
@@ -27,7 +28,10 @@ function App() {
 
 
         <Route path="/profilp" element={<ProfilProprietaire />}> </Route>
+        <Route path="/gardes" element={<ChoicesGardes />}> </Route>
         
+
+    
 
 
         <Route path="/inscription" element={<Inscription />}> </Route>

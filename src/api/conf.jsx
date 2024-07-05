@@ -92,6 +92,7 @@ function GetListAttribute() {
   const response = axiosInstance.get('http://localhost:8000/attribution')
   return response;
 }
+
 function testAdd(formData) {
   const response = axiosInstance.post('care/create-with-assignment', formData)
   return response;
@@ -106,8 +107,8 @@ function GetDetailleCarePost(id_post) {
   return response;
 }
 
-function PostCareComment(id_post, dataComment){
-  const response =  axiosInstance.post(`http://localhost:8000/attribution/create/care/${id_post}/post/comment`, dataComment)
+function PostCareComment(id_post, dataComment) {
+  const response = axiosInstance.post(`http://localhost:8000/attribution/create/care/${id_post}/post/comment`, dataComment)
   return response;
 }
 
@@ -118,6 +119,32 @@ async function PostCreateCare(formData) {
   return response;
 }
 
+
+async function GetOwnedCares() {
+  const response = axiosInstance.get(`http://localhost:8000/owned-cares/`)
+  return response;
+}
+
+async function GetKeepCares() {
+  const response = axiosInstance.get(`http://localhost:8000/kept-cares/`)
+  return response;
+}
+
+async function PostCarePosts(id_care, data) {
+  const response = axiosInstance.post(`http://localhost:8000/cares/${id_care}/posts/`, data)
+  return response;
+}
+
+
+
+async function GetALLCare() {
+  const response = axiosInstance.get(`http://localhost:8000/cares-to-keep/`)
+  return response;
+}
+async function UpdtaCare(data){
+  const response = axiosInstance.put(`http://localhost:8000/keep/`, data)
+  return response;
+}
 
 // Catégory
 
@@ -153,7 +180,12 @@ export {
   testAdd,
   GetListPostCare,
   GetDetailleCarePost,
-  PostCareComment
+  PostCareComment,
+  GetOwnedCares,
+  GetKeepCares,
+  PostCarePosts,
+  GetALLCare,
+  UpdtaCare
 };
 
 
