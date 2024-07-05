@@ -58,7 +58,7 @@ export default function Enregistrement() {
         // console.log("Données d'enregistrement :", userData);
         const response = axios.post("http://localhost:8000/user/signup", userData)
         return response;
-        console.log(response);
+  
         // console.log(response);
     
     };
@@ -69,7 +69,7 @@ export default function Enregistrement() {
                 <h2>Inscription</h2>
                 <p>Débutez dès maintenant chez arosa-je !</p>
                 <p>Informations personnelles</p>
-                <form>
+                {/* <form>
                     <div className="form-group">
 
                         <div className="half">
@@ -115,9 +115,9 @@ export default function Enregistrement() {
                         </div>
                     </div>
                     <label htmlFor="botaniste">Botaniste</label>
-                    <input type="checkbox" name="botaniste" id="botaniste" checked={isBotaniste} onChange={handleBotanisteChange}/> */}
+                    <input type="checkbox" name="botaniste" id="botaniste" checked={isBotaniste} onChange={handleBotanisteChange}/>  */}
                     <button type="button" onClick={handleEnregistrement}>S'enregistrer</button>
-                </form>
+                {/* </form> */}
             </div>
             <div className="icon-container">
                 <img src="reste_connecte.png" alt="Reste connecté" />

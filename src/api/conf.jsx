@@ -114,8 +114,8 @@ function PostCareComment(id_post, dataComment){
 
 // Care
 async function PostCreateCare(formData) {
-  const response = await axiosInstance.post('http://localhost:8000/care/create', formData)
-  return response;
+  const response = await axios.post('http://localhost:8000/care/create', formData)
+
 }
 
 

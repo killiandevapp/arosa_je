@@ -66,7 +66,7 @@ export default function Connexion() {
     //     "password":"kiki1234"
     // });
         const [getData, setGetData] = useState({
-            "email": "kiki2306@example.com",
+            "email": "kiki2307@example.com",
             "password":"kiki1234"
     });
 

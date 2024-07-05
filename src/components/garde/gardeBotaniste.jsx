@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { GetListAttribute, GetListPostCare, GetDetailleCarePost, PostCareComment } from "../../api/conf";
-import Moment from 'react-moment';
+
 
 export default function GardeBotaniste() {
     // Trigger Garde
@@ -34,13 +34,13 @@ export default function GardeBotaniste() {
 
     // Si nous recuperont une garde alor on recupere la list des post
     useEffect(() => {
-        if (dataGarde) {
-            const res = GetListPostCare(dataGarde[0].id)
-            res.then((el) => {
-                setDataPost(el.data.posts)
-            })
+        // if (dataGarde) {
+        //     const res = GetListPostCare(dataGarde[0])
+        //     res.then((el) => {
+        //         setDataPost(el.data.posts)
+        //     })
 
-        }
+        // }
 
     }, [dataGarde])
 
