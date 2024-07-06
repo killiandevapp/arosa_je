@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { GetListAttribute, GetListPostCare, GetDetailleCarePost, PostCareComment } from "../../api/conf";
-
+import moment from 'moment';
 
 export default function GardeBotaniste() {
     // Trigger Garde
@@ -12,6 +12,7 @@ export default function GardeBotaniste() {
     const [dataPost, setDataPost] = useState()
     const [dataPostDetaille, setDataPostDetaille] = useState()
     const [openFormAddComment, setOpenFormAddComment] = useState(false)
+    const [openDetailAndPost, setOpenDetailAndPost] = useState(false)
 
     const [dataComment, setDataComment] = useState({
         "comments": '',
@@ -27,22 +28,15 @@ export default function GardeBotaniste() {
     useEffect(() => {
         const res = GetListAttribute()
         res.then((el) => {
-            setDataGarde(el.data.cares)
+            if (el && el.data && el.data.cares) {
+                setDataGarde(el.data.cares)
+
+            } else {
+                console.log('error');
+            }
         })
 
     }, [])
-
-    // Si nous recuperont une garde alor on recupere la list des post
-    useEffect(() => {
-        // if (dataGarde) {
-        //     const res = GetListPostCare(dataGarde[0])
-        //     res.then((el) => {
-        //         setDataPost(el.data.posts)
-        //     })
-
-        // }
-
-    }, [dataGarde])
 
     // Récuperer les détaille d'un post
     function detaillePost(id_post) {
@@ -75,6 +69,7 @@ export default function GardeBotaniste() {
 
     }
     //Ajouter un commentaire
+
     function addComment(id_post) {
         const res = PostCareComment(id_post, dataComment)
         res.then((el) => {
@@ -83,9 +78,12 @@ export default function GardeBotaniste() {
     }
 
     function openFormComment(id_post) {
+
         if (id_post) {
             const allFormContainers = document.querySelectorAll('.ctnFormComment');
             const targetContainer = document.getElementById('ctnFormComment' + id_post);
+            const b = document.getElementById('ctnFormComment' + id_post)
+            b.classList.add('hidden')
 
             allFormContainers.forEach(container => {
                 if (container !== targetContainer) {
@@ -103,17 +101,44 @@ export default function GardeBotaniste() {
     }
 
 
+    // function getIdGarde(id_care) {
+    //     console.log(openDetailAndPost);
 
-    if (dataGarde) {
-        dataGarde.map((el) => { console.log(el.title) })
+    
+    //         if (dataGarde) {
+    //             const res = GetListPostCare(id_care)
+    //             res.then((el) => {
+    //                 setDataPost(el.data.posts)
 
-    }
-    console.log(dataPostDetaille);
+    //             })
+    //         }
+        
 
-    if (dataPost) {
-        console.log(dataPost);
-        dataPost.map((el) => { console.log(el.title) })
 
+
+    // }
+
+    function getIdGarde(id_care) {
+        const ctnPosComment = document.getElementById('ctnPosComment');
+    
+        if (ctnPosComment) {
+            if (ctnPosComment.classList.contains('hidden')) {
+                // Ouvrir le conteneur et charger les posts
+                if (dataGarde) {
+                    const res = GetListPostCare(id_care);
+                    res.then((el) => {
+                        setDataPost(el.data.posts);
+                        ctnPosComment.classList.remove('hidden');
+                        ctnPosComment.classList.add('flex');
+                    });
+                }
+            } else {
+                // Fermer le conteneur
+                ctnPosComment.classList.add('hidden');
+                ctnPosComment.classList.remove('flex');
+                setDataPost([]); // Optionnel : vider les données des posts
+            }
+        }
     }
 
     return (
@@ -135,34 +160,45 @@ export default function GardeBotaniste() {
 
                 </div>
                 <div>
+                
+                    {/* Détataille de la garde */}
                     {!triggerGarde ? (
                         <>
-                            <p>Surveillance de garde</p>
-                            <p>Détaille de la garde : </p>
+                            <p className="font-semibold text-xl mt-[25px] mb-[25px]">Surveillance de garde</p>
+                
                             <div>
                                 {dataGarde ? (
-                                    dataGarde.map((el) =>
+                                    dataGarde.map((el, index) =>
                                         <>
-                                            <p>Titre : {el.title}</p>
-                                            <p>Description : {el.description}</p>
-                                            <p>Début de la garde : {el.started_at}</p>
-                                            <p>Fin de la garde : {el.ended_at}</p>
+                                            <div onClick={() =>  setOpenDetailAndPost(!openDetailAndPost)}>
+                                                <p className=" text-lg font-medium">Garde N°{index + 1}  Titre : {el.title}</p>
+                                              
+                                                    <div>
+                                                        <p>Description : {el.description}</p>
+                                                        <p>Début de la garde : <span>{moment(el.started_at).format('DD/MM/YYYY')}</span> </p>
+                                                        <p>Fin de la garde : {moment(el.ended_at).format('DD/MM/YYYY')}</p>
+                                                        <button className="p-[5px] mb-[35px] bg-xhite w-1/6 p-3 border-2 shadow-xl rounded-lg text-base mt-[15px] font-semibold text-[#5AD058] cursor-pointer" onClick={()=> getIdGarde(el.id)}>Voir post</button>
+                                                    </div>
 
+                                             
+
+
+                                            </div>
                                         </>
                                     )
                                 ) : null}
 
                             </div>
-                            <p className="text-lg font-medium mt-[25px]">Voici les post : </p>
-                            <div>
+                         
+                            <div id="ctnPosComment" className="hidden flex-col mt-[30px] ">
                                 {dataPost != undefined ? (
                                     <>
                                         {dataPost.map((el, index) =>
                                             <>
-                                                <div className="mb-[15px]">
-                                                    <div key={el.id_post} className="grid grid-cols-[80%_20%] bg-zinc-200">
-                                                        <button onClick={(() => { detaillePost(el.id_post) })} className="mt-[15px] mb-[15px] ">Post :  {el.title}</button>
-                                                        <button onClick={(() => { openFormComment(el.id_post) })}>Cree commentaire</button>
+                                                <div className="mb-[30px] shadow-xl border-2">
+                                                    <div key={el.id_post} className="grid grid-cols-[80%_20%] ">
+                                                        <button onClick={(() => { detaillePost(el.id_post) })} className="ml-[15px] mt-[15px] mb-[15px] text-black text-start "><span className="font-semibold">Titre du post  : </span>{el.title}</button>
+                                                        <button className=" text-[#5AD058] font-bold" onClick={(() => { openFormComment(el.id_post) })}>Cree commentaire</button>
                                                     </div>
                                                     <div className="ctnFormComment hidden flex-col" id={"ctnFormComment" + el.id_post}>
                                                         <input className="m-[15px] p-[10px]" type="text" placeholder="Commentaire" onChange={(e) => setDataComment({ comments: e.target.value })} />
@@ -170,7 +206,7 @@ export default function GardeBotaniste() {
                                                     </div>
 
 
-                                                    <div className="ctnDeatilleBotaniste hidden  flex-col" id={'ctnDeatilleBotaniste' + el.id_post}>
+                                                    <div className="ctnDeatilleBotaniste hidden flex-col p-[20px]" id={'ctnDeatilleBotaniste' + el.id_post}>
                                                         <p className="text-lg font-medium mb-[25px] mt-[15px]">Détaille : </p>
                                                         <p>Titre : {el.title}</p>
                                                         <p>Description : {el.description}</p>

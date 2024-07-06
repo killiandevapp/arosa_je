@@ -6,14 +6,14 @@ import axios from 'axios';
 
 export default function Enregistrement() {
     const [userData, setUserData] = useState({
-        "fullname": "kDi kiki",
-        "email": "ki3066@example.com",
+        "fullname": "kDddi kikid",
+        "email": "ki2772066@example.com",
         "address": "123 Maafple Street",
         "password": "kiki1234",
         "zip": 12345,
         "city": "Springfield",
-        "phone": "598-12834",
-        "role": "botanist"
+        "phone": "578-12834",
+        "role": "owner"
     });
 
     // "fullname": "kiki kiki",
@@ -34,6 +34,19 @@ export default function Enregistrement() {
     // "city": "Springfield",
     // "phone": "598-12834",
     // "role": "botanist"
+
+
+
+    // co new date = 
+
+    // "fullname": "kik bondi",
+    // "email": "kikibondi@example.com",
+    // "address": "123 Male Street",
+    // "password":"kiki1234",
+    // "zip": 1345,
+    // "city": "Springfield",
+    // "phone": "598-72834",
+    // "role": "owner"
 
     const [isBotaniste, setIsBotaniste] = useState(false);
 

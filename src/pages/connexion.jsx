@@ -66,9 +66,14 @@ export default function Connexion() {
     //     "password":"kiki1234"
     // });
         const [getData, setGetData] = useState({
-            "email": "kiki2307@example.com",
+           "email": "kiki2306@example.com",
             "password":"kiki1234"
     });
+
+    //Demandeur 
+
+            //    "email": "ki2772066@example.com",
+            // "password":"kiki1234"
 
 
 

@@ -1,0 +1,18 @@
+Quand le bitaniste cree un commentaire ca ne se change pas directement 
+dans la vue (revoir compenents gardeBotaniste)
+
+
+Meilleur gestion des erreur 
+
+
+Responsive
+
+
+gestion des route et des role
+
+
+
+
+formater date avec moment
+
+

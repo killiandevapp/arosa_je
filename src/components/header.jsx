@@ -10,6 +10,7 @@ import Logo from "../images/22.png";
 const navigation = [
   { name: "Info", href: "/info", current: true },
   { name: "Blog", href: "/blog", current: false },
+  { name: "Gardes", href: "/gardes", current: false },
   { name: "Profil", href: "/profil", current: false }
 ];
 
