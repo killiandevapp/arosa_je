@@ -58,6 +58,8 @@
 // src/components/Connexion.jsx
 import React, { useState } from 'react';
 import {Connecte} from "../api/conf"
+import Header from '../components/header'
+import '../styles/connexion.css'
 // import axiosInstance from '../api/conf';
 
 export default function Connexion() {
@@ -66,9 +68,10 @@ export default function Connexion() {
     //     "password":"kiki1234"
     // });
         const [getData, setGetData] = useState({
-           "email": "kiki2306@example.com",
+           "email": "kikibondi@example.com",
             "password":"kiki1234"
     });
+//botaniste            "email": "kiki2306@example.com",
 
     //Demandeur 
 
@@ -84,6 +87,12 @@ export default function Connexion() {
         e.preventDefault(); // Empêche le comportement par défaut du bouton
         try {
             const response = await Connecte(getData);
+            console.log(response);
+            // if(response){
+            //     window.location.href = '/Profil'
+            // }else{
+            //     console.log('else');
+            // }
             console.log(response); // Gérez la réponse ici
         } catch (error) {
             console.error("Erreur lors de la connexion:", error);
@@ -92,15 +101,17 @@ export default function Connexion() {
 
 
     return (
-        <section id="sctConnexion1">
-            <div id="div1CtnConnexion">
+        <>
+        <Header />
+        <section id="sctConnexion1" className='!h-auto'>
+            <div id="div1CtnConnexion" className='bg-[#e0ffd0]'>
                 <div id="ssCnFormBlog">
                     <div>
                         <h2>Vous revoilà !</h2>
                         <p>Entrez vos identifiants pour vous connecter.</p>
                     </div>
                     <div id="ctnInputConnexion">
-                        {/* <div>
+                        <div>
                             <input 
                                 placeholder="Entrez votre adresse e-mail" 
                                 type="text" 
@@ -115,7 +126,7 @@ export default function Connexion() {
                                 onChange={(e) => setGetData({ ...getData, password: e.target.value })} 
                             />
                             <img src={require('../images/passwordLogo.png')} alt="" />
-                        </div> */}
+                        </div>
                     </div>
                     <div id="ctnBtnConnexion">
                         <button onClick={triggerConnection}>Connexion</button>
@@ -127,5 +138,6 @@ export default function Connexion() {
                 <p>Pas encore inscrit ? <a href="/enregistrement" className="colorGrenn">Créer mon compte</a></p>
             </div>
         </section>
+        </>
     );
 }

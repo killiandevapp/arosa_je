@@ -1,7 +1,7 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon, UserIcon } from "@heroicons/react/24/outline";
-// import Reglage from '../reglages/reglages'
+import Reglage from '../api/regalges'
 import { Link } from "react-router-dom";
 import Logo from "../images/22.png";
 // import { showCurrentPage } from '../redux/action/currentPage'
@@ -19,6 +19,7 @@ function classNames(...classes) {
 }
 
 export default function Navbarv2({ pageAcutelle}) {
+  const [desactivate ,setDesactivate] = useState(false)
   useEffect(() => {
     navigation.forEach((item) => {
       if (item.name === pageAcutelle) {
@@ -49,11 +50,11 @@ export default function Navbarv2({ pageAcutelle}) {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <Link to="/info">
-                    <img className="h-6" src={Logo} alt="ISIS" />
+                    <img className="h-6" src={Logo}/>
                   </Link>
                 </div>
-                <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4">
+                <div className="hidden sm:ml-6 sm:block ">
+                  <div className="flex space-x-4 [&>:nth-child(4)]:!ml-[60vw]">
                     {navigation.map((item) => (
                       <>
                         {item.name === "Profil" ? (
@@ -98,7 +99,8 @@ export default function Navbarv2({ pageAcutelle}) {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                {/* <Reglage /> */}
+                {!desactivate ? (  <Reglage setDesactivate={setDesactivate} desactivate={desactivate} /> ) : null}
+               
               </div>
             </div>
           </div>

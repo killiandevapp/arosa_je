@@ -391,16 +391,17 @@ export default function Advice() {
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
-      setFormData(prevState => ({ ...prevState, picture: file }));       
-
+        
         if (file) {
+            setFormData(prevState => ({ ...prevState, picture: file }));
+    
             const reader = new FileReader();
             reader.onloadend = () => {
-          
                 setPreviewUrl(reader.result);
             };
             reader.readAsDataURL(file);
         } else {
+            setFormData(prevState => ({ ...prevState, picture: null }));
             setPreviewUrl('');
         }
     };
@@ -408,17 +409,24 @@ export default function Advice() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formDataToSend = new FormData();
-
+    
         for (const key in formData) {
-            formDataToSend.append(key, formData[key]);
+            if (key === 'picture' && formData[key] instanceof File) {
+                formDataToSend.append(key, formData[key], formData[key].name);
+            } else {
+                formDataToSend.append(key, formData[key]);
+            }
         }
-
+    
         try {
             const response = await PostAdvice(formDataToSend);
             console.log("Conseil envoyé avec succès :", response);
             // Réinitialiser le formulaire ou afficher un message de succès
         } catch (error) {
             console.error("Erreur lors de l'envoi du conseil :", error);
+            if (error.response) {
+                console.error("Réponse du serveur :", error.response.data);
+            }
             // Afficher un message d'erreur à l'utilisateur
         }
     };

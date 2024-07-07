@@ -29,9 +29,9 @@
 
 //         <Route path="/profilp" element={<ProfilProprietaire />}> </Route>
 //         <Route path="/gardes" element={<ChoicesGardes />}> </Route>
-        
 
-    
+
+
 
 
 //         <Route path="/inscription" element={<Inscription />}> </Route>
@@ -46,7 +46,7 @@
 // export default App;
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate  } from 'react-router-dom';
 import Index from './components/index';
 import Blog from './components/blog';
 import Connexion from './pages/connexion';
@@ -81,8 +81,30 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/connexion" element={<Connexion />} />
           <Route path="/enregistrement" element={<Enregistrement />} />
-          <Route path="/profilb" element={<ProfilBotaniste />} />
-          <Route path="/profilp" element={<ProfilProprietaire />} />
+          <>
+            <Route
+              path="/profil"
+              element={
+                <ProtectedRouteRole
+                  allowedRoles={['botanist', 'owner']}
+                  element={
+                    () => {
+                      const user = JSON.parse(localStorage.getItem('user_info'));
+                      const userRole = user ? user.role : null;
+                      switch (userRole) {
+                        case 'botanist':
+                          return <ProfilBotaniste />;
+                        case 'owner':
+                          return <ProfilProprietaire />;
+                        default:
+                          return <Navigate to="/connexion" />;
+                      }
+                    }
+                  }
+                />
+              }
+            />
+          </>
           <Route path="/gardes" element={<ChoicesGardes />} />
           <Route path="/inscription" element={<Inscription />} />
           <Route element={<ProtectedRouteRole allowedRoles={['owner']} />}>
@@ -90,8 +112,8 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-      <ErrorModal 
-        isOpen={errorModalOpen} 
+      <ErrorModal
+        isOpen={errorModalOpen}
         onClose={() => setErrorModalOpen(false)}
         message={errorMessage}
       />

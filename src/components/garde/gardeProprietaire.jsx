@@ -9,7 +9,7 @@ import { PostCarePosts } from "../../api/conf";
 import { GetListKeptCares } from "../../api/conf";
 import { PostImgPostCare } from "../../api/conf";
 import ModalError from "../error/errorModal";
-
+import moment from "moment";
 
 export default function GardeProprietaire() {
     // Trigger Garde
@@ -162,6 +162,34 @@ export default function GardeProprietaire() {
 
 
     }
+
+    function openDetailAndAddPost(id_care) {
+
+        if (id_care) {
+            setDataPost({ ...dataPost, id_care: id_care })
+           
+
+            // On reccupere le detaille 
+            const allFormContainers = document.querySelectorAll('.ctnDeatailAndPost');
+            const targetContainer = document.getElementById('ctnDeatailAndPost' + id_care);
+
+            allFormContainers.forEach(container => {
+                if (container !== targetContainer) {
+                    container.classList.add('hidden');
+                    container.classList.remove('flex');
+                }
+            });
+
+            if (targetContainer) {
+                targetContainer.classList.toggle('hidden');
+                targetContainer.classList.toggle('flex');
+            }
+
+        }
+
+
+
+    }
     // Envoyer un post kept cares
 
 
@@ -185,11 +213,7 @@ export default function GardeProprietaire() {
 
     }
 
-    function getIdPost(id_care) {
-        //  const r = PostCarePosts(id_care,dataPost)
-        setDataPost({ ...dataPost, id_care: id_care })
 
-    }
 
     function savePost(id_care) {
 
@@ -241,19 +265,19 @@ export default function GardeProprietaire() {
             <div className="grid h-[250px] grid-cols-[50%_50%]">
                 <div className="flex items-center justify-center" onClick={() => setOpenDataOwnerCare(!openDataOwnerCare)}>
                     <div className="h-[70%] p-[15px] w-9/12 cursor-pointer rounded-xl shadow-xl border border-gray-300 flex flex-col justify-center gap-[15%]	">
-                        <h3 className="text-lg font-medium">Gardes effectuées et création de post</h3>
-                        <p className="text-base text-gray-500">Consultez l'historique des plantes dont vous avez pris soin et donner des nouvelles quotidienne.</p>
+                        <h3 className="text-lg font-medium"> Plante qui ont été confiées à d'autres.</h3>
+                        <p className="text-base text-gray-500">Affichage les gardes et les posts des plante qui ont été confiées à d'autres.</p>
                     </div>
                 </div>
                 <div className="flex items-center justify-center" onClick={() => { setOpenDataKeeper(!openDataKeeper) }}>
                     <div className="h-[70%] p-[15px] w-9/12 cursor-pointer rounded-xl shadow-xl border border-gray-300 flex flex-col justify-center gap-[15%]	">
                         <h3 className="text-lg font-medium">Mes plantes gardées</h3>
-                        <p className="text-base text-gray-500">Visualisez les périodes où vos plantes ont été confiées à d'autres.</p>
+                        <p className="text-base text-gray-500">Visualisez les plantes que je garde et publier des posts .</p>
                     </div>
                 </div>
             </div>
             <div>
-                <button onClick={() => { setOpenFormAddCare(!openFormAddCare) }} className="bg-[#5AD058] w-1/3 p-3 rounded-lg text-base mt-[15px] font-semibold text-white cursor-pointer">Créé une garde</button>
+                <button onClick={() => { setOpenFormAddCare(!openFormAddCare) }} className="p-[5px] mb-[35px] bg-xhite w-1/6 p-5 border-2 shadow-xl rounded-lg text-base mt-[15px] font-semibold text-[#5AD058] cursor-pointe">Créé une garde</button>
 
             </div>
 
@@ -261,14 +285,14 @@ export default function GardeProprietaire() {
 
             {openFormAddCare ? (
                 <>
-                    <div className="flex flex-col duration-100">
-                        <input placeholder="Titre" type="text" name="title" onChange={(e) => { setDataGarde(prev => ({ ...prev, title: e.target.value })) }} />
-                        <input placeholder="Description" type="text" name="description" onChange={(e) => { setDataGarde(prev => ({ ...prev, description: e.target.value })) }} />
-                        <label>Date de début</label>
-                        <input type="date" name="Date début" onChange={(e) => { setDataGarde(prev => ({ ...prev, started_at: e.target.value })) }} />
-                        <label>Date de fin</label>
-                        <input type="date" name="Date fin" onChange={(e) => { setDataGarde(prev => ({ ...prev, ended_at: e.target.value })) }} />
-                        <button onClick={(() => saveGarde())}>Sauvegarder</button>
+                    <div className="flex flex-col duration-100 mt-[40px] ml-[40px]">
+                        <input className="mt-[10px]" placeholder="Titre" type="text" name="title" onChange={(e) => { setDataGarde(prev => ({ ...prev, title: e.target.value })) }} />
+                        <input className="mt-[10px]" placeholder="Description" type="text" name="description" onChange={(e) => { setDataGarde(prev => ({ ...prev, description: e.target.value })) }} />
+                        <label className="mt-[10px]">Date de début</label>
+                        <input className="w-1/4" type="date" name="Date début" onChange={(e) => { setDataGarde(prev => ({ ...prev, started_at: e.target.value })) }} />
+                        <label className="mt-[10px]">Date de fin</label>
+                        <input className="w-1/4" type="date" name="Date fin" onChange={(e) => { setDataGarde(prev => ({ ...prev, ended_at: e.target.value })) }} />
+                        <button className="p-[5px] mb-[35px] bg-xhite w-1/6 p-3 border-2 mt-[35px] shadow-xl rounded-lg text-base mt-[15px] font-semibold text-[#5AD058] cursor-pointe" onClick={(() => saveGarde())}>Sauvegarder</button>
 
                     </div>
 
@@ -282,7 +306,7 @@ export default function GardeProprietaire() {
                 <>
                     <div>
                         <div>
-                            <h3 className="mt-[30px] text-lg font-semibold">Plante ont été confiées à d'autres. </h3>
+                            <h3 className="font-semibold text-xl mt-[25px] mb-[25px]">Plante ont été confiées à d'autres. </h3>
 
                             <div>
                                 {listCareOwner ? ( 
@@ -292,21 +316,21 @@ export default function GardeProprietaire() {
 
 
 
-                                    <div onClick={() => openDeatailGarde(item.id)} className="cursor-pointer bg-gray-200 p-[20px] rounded-lg mt-[15px]">
+                                    <div onClick={() => openDeatailGarde(item.id)} className="cursor-pointer border-2 shadow-xl p-[10px] rounded-lg mt-[35px]">
 
-                                        <p className=" text-lg font-medium">Garde N°{index + 1}  Titre : {item.title}</p>
+                                        <p className="font-normal text-lg mb-[10px] mt-[10px]">Garde N°{index + 1}  Titre : {item.title}</p>
                                         {/* Détaille de la garde  */}
                                         <div id={'ctnDeatilGarde' + item.id} className="ctnDeatilGarde hidden flex-col">
                                             <p><span className="font-medium">Description : </span>{item.description}</p>
-                                            <p><span className="font-medium">Début de la garde : </span> {item.started_at}</p>
-                                            <p><span className="font-medium" >Fin de la garde : </span> {item.ended_at}</p>
+                                            <p><span className="font-medium">Début de la garde : </span>  {moment(item.started_at).format('DD/MM/YYYY')}</p>
+                                            <p><span className="font-medium" >Fin de la garde : </span>  {moment(item.ended_at).format('DD/MM/YYYY')} </p>
                                             <p><span className="font-medium">Personne gardant la plante : </span> {item.keeper != undefined ? item.keeper : ' attribution en cour.'}</p>
                                             <p><span>Botaniste attribuer : </span> {item.botaniste != undefined ? ' un botaniste a bien était attribuer' : ' pas de botaniste '} </p>
                                             <div>
-                                                <h3>Lists des post : </h3>   {listPostCare ? (
+                                                <h3 className="font-lg text-xl mb-[20px] mt-[20px]">Lists des post : </h3>   {listPostCare ? (
                                                     listPostCare.map((item, index) =>
                                                         <div className="flex flex-col w-1/2 mt-[10px]">
-                                                            <p>Post N°{index + 1}</p>
+                                                            <p className="font-semibold mt[15px] mb-[10px]">Post <span className=" text-[#5AD058]"> N°{index + 1}</span></p>
                                                             <p>Titre : {item.title}</p>
                                                             <p>Description : {item.description}</p>
                                                         </div>
@@ -339,7 +363,7 @@ export default function GardeProprietaire() {
             {openDataKeeper ? (
                 <>
 
-                    <p className="mt-[30px] text-lg font-semibold">Les plantes que j'ai garder</p>
+                    <p className="mt-[30px] text-xl font-bold">Les plantes que j'ai garder</p>
                    
 
                         {
@@ -350,8 +374,8 @@ export default function GardeProprietaire() {
 
 
                                 <>
-                                    <p onClick={() => getIdPost(item.id)} className="mt-[30px] text-lg font-medium">Garde N°{index + 1}</p>
-                                    <div>
+                                    <p onClick={() => openDetailAndAddPost(item.id)} className="mt-[30px] text-lg font-medium">Garde N°{index + 1}</p>
+                                    <div className="hidden ctnDeatailAndPost flex-col" id={"ctnDeatailAndPost" + item.id} >
                                         <p><span className="font-medium"> Description :</span> {item.description}</p>
                                         <p><span className="font-medium">Début de la garde : </span> {item.started_at}</p>
                                         <p><span className="font-medium">Fin de la garde :</span> {item.ended_at}</p>

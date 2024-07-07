@@ -14,7 +14,7 @@ export default function Blog() {
   useEffect(() => {
     const bckBlogId = document.getElementById('bckBlogId');
     const mediaQuery = window.matchMedia('(max-width: 600px)');
-
+  
     const handleMediaChange = (event) => {
       if (event.matches) {
         bckBlogId.setAttribute('src', bckBlogMob);
@@ -22,26 +22,28 @@ export default function Blog() {
         bckBlogId.setAttribute('src', bckBlog);
       }
     };
-
+  
     handleMediaChange(mediaQuery);
-    console.log('heryyy');
-    try{
-          const res = GetALLAdvice()
-
-    }catch(error){
-      console.log(error);
-    }
-    
-    
-
-
-
-
-
-
-
+  
+    // Fonction asynchrone séparée
+    const fetchAdvice = async () => {
+      try {
+        const res = await GetALLAdvice();
+        console.log(res);
+        setDataAdvice(res.data.advices);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    // Appel de la fonction asynchrone
+    fetchAdvice();
+  
+    // Nettoyage de l'effet si nécessaire
+    return () => {
+      // Code de nettoyage si nécessaire
+    };
   }, []);
-
 
   return (
     <>

@@ -1,13 +1,17 @@
 import React from "react";
 import GardeAll from "../components/garde/allGardes";
+import Header from '../components/header'
 
 
 
-
-export default function choicesGardes(){
+export default function choicesGardes() {
 
 
     return (
-          <GardeAll/>
+        <>
+            <Header />
+            <GardeAll />
+        </>
+
     )
 }

@@ -3,6 +3,7 @@ import React from "react";
 import '../styles/enregistrement.css'
 import { useState } from "react";
 import axios from 'axios';
+import Header from '../components/header'
 
 export default function Enregistrement() {
     const [userData, setUserData] = useState({
@@ -50,21 +51,21 @@ export default function Enregistrement() {
 
     const [isBotaniste, setIsBotaniste] = useState(false);
 
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setUserData(prevState => ({
-    //         ...prevState,
-    //         [name]: value
-    //     }));
-    // };
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setUserData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
 
-    // const handleBotanisteChange = () => {
-    //     setIsBotaniste(prevState => !prevState); // Inverse la valeur actuelle de isBotaniste
-    //     setUserData(prevState => ({
-    //         ...prevState,
-    //         role: isBotaniste ? "utilisateur" : "botaniste"
-    //     }));
-    // };
+    const handleBotanisteChange = () => {
+        setIsBotaniste(prevState => !prevState); // Inverse la valeur actuelle de isBotaniste
+        setUserData(prevState => ({
+            ...prevState,
+            role: isBotaniste ? "utilisateur" : "botaniste"
+        }));
+    };
 
     const handleEnregistrement = () => {
         // Effectuez ici les actions nécessaires pour enregistrer les données
@@ -78,11 +79,12 @@ export default function Enregistrement() {
 
     return (
         <>
+        <Header/>
             <div className="container">
                 <h2>Inscription</h2>
                 <p>Débutez dès maintenant chez arosa-je !</p>
                 <p>Informations personnelles</p>
-                {/* <form>
+                <form>
                     <div className="form-group">
 
                         <div className="half">
@@ -128,13 +130,11 @@ export default function Enregistrement() {
                         </div>
                     </div>
                     <label htmlFor="botaniste">Botaniste</label>
-                    <input type="checkbox" name="botaniste" id="botaniste" checked={isBotaniste} onChange={handleBotanisteChange}/>  */}
+                    <input type="checkbox" name="botaniste" id="botaniste" checked={isBotaniste} onChange={handleBotanisteChange}/> 
                     <button type="button" onClick={handleEnregistrement}>S'enregistrer</button>
-                {/* </form> */}
+                </form>
             </div>
-            <div className="icon-container">
-                <img src="reste_connecte.png" alt="Reste connecté" />
-            </div>
+         
         </>
     );
 }

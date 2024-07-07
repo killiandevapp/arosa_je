@@ -1,11 +1,16 @@
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
-const ProtectedRouteRole = ({ allowedRoles }) => {
+const ProtectedRouteRole = ({ allowedRoles, element }) => {
   const user = JSON.parse(localStorage.getItem('user_info'));
   const userRole = user ? user.role : null;
+  const location = useLocation();
 
-  return allowedRoles.includes(userRole) ? <Outlet /> : <Navigate to="/" />;
+  if (!allowedRoles.includes(userRole)) {
+    return <Navigate to="/connexion" state={{ from: location }} replace />;
+  }
+
+  return element ? (typeof element === 'function' ? element() : element) : <Outlet />;
 };
 
 export default ProtectedRouteRole;

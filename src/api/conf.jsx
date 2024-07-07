@@ -82,6 +82,7 @@ async function Connecte(getData) {
       if (tokenResponse.data && tokenResponse.data.access && tokenResponse.data.refresh) {
         localStorage.setItem('access_token', tokenResponse.data.access);
         localStorage.setItem('refresh_token', tokenResponse.data.refresh);
+        window.location.href = '/profil'
       }
 
       console.log('Connexion réussie !');
@@ -384,10 +385,26 @@ async function Connecte(getData) {
 //         "expiration_token": "2024-07-06T23:34:39.929724"
 //     }
 // }
+function deleteAllCookies() {
+  const cookies = document.cookie.split(";");
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i];
+    const eqPos = cookie.indexOf("=");
+    const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+  }
+}
 
-
-
-
+// function logout() {
+//   // Supprimer les éléments du localStorage
+//   localStorage.clear();
+  
+//   // Supprimer tous les cookies
+//   deleteAllCookies();
+  
+//   // Rediriger vers la page de connexion
+//   window.location.href = '/connexion';
+// }
 // async function Connecte(getData) {
 //   try {
 //     const response = await axiosInstance.post('/user/signin', getData);
@@ -407,14 +424,35 @@ async function Connecte(getData) {
 
 // Advices
 async function PostAdvice(formData) {
-  const response = await axiosInstance.post('http://localhost:8000/advice/create', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
+  const response = await axiosInstance.post('http://localhost:8000/advice/create', formData,  {
+      headers: {
+          'Content-Type': 'multipart/form-data'
+      }
   });
   return response;
 }
+async function LogoutFctn() {
+  try {
+    const response = await axios.post('http://localhost:8000/logout/', {}, {
+      withCredentials: true
+    });
 
+    // Supprimer manuellement les cookies côté client
+    document.cookie = "sessionid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+    // Nettoyer le localStorage si nécessaire
+    localStorage.clear();
+
+    // Rediriger l'utilisateur ou mettre à jour l'état de l'application
+    window.location.href = '/connexion'; // ou toute autre logique de redirection
+
+    return response;
+  } catch (error) {
+    console.error('Erreur lors de la déconnexion:', error);
+    throw error;
+  }
+}
 async function GetALLAdvice() {
 
   try {
@@ -424,7 +462,7 @@ async function GetALLAdvice() {
     return response;
 
   } catch (error) {
-    alert('Vous avais une erreur ' + error.response.status + ' . ' + error.response.status)
+    showErrorModal(error.message || "Une erreur s'est produite lors de la récupération des détails du post.");
     throw error;
   }
 
@@ -569,7 +607,8 @@ export {
   GetALLCare,
   UpdtaCare,
   GetListKeptCares,
-  PostImgPostCare
+  PostImgPostCare,
+  LogoutFctn
 };
 
 
