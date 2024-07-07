@@ -103,14 +103,14 @@ export default function ProfilDetaille() {
                 </div>
                 <div className='grid grid-cols-2	'>
                     <div className='flex justify-center'>
-                        <button className='bg-[#5AD058] p-3 rounded-lg text-base mt-[15px] font-semibold text-white w-1/3'
+                        <button className='p-[15px] mb-[35px] bg-xhite w-2/6 p-5 border-2 shadow-xl rounded-lg text-base mt-[15px] font-semibold text-[#5AD058] cursor-pointe'
                             onClick={() => fcUpdtateProfil()}>
                             Modifier profil
                         </button>
                     </div>
                     <div className='flex justify-center'>
                         {!disableUpdate ? (
-                            <input type='button' value='enregister' className='bg-[#5AD058] w-1/3 p-3 rounded-lg text-base mt-[15px] font-semibold text-white cursor-pointer' onClick={() => { saveUpdate() }} />
+                            <input type='button' value='enregister' className='p-[15px] mb-[35px] bg-xhite w-1/6 p-5 border-2 shadow-xl rounded-lg text-base mt-[15px] font-semibold text-[#5AD058] cursor-pointe' onClick={() => { saveUpdate() }} />
                         ) : null}
 
                     </div>

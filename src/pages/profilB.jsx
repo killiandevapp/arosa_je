@@ -282,7 +282,7 @@ export default function ProfilBotaniste() {
             <div className="justify-center items-center my-5 mx-8 rounded-xl shadow-xl border border-gray-300 overflow-hidden">
 
                 <Accordion className="mb-5" open={openAcc2} icon={<Icon id={1} open={!openAcc2} />}>
-                    <div className="mx-5 mt-2">
+                    <div className="mx-5 mt-2 ">
                         <AccordionHeader className="text-md mb-2" onClick={handleOpenAcc2}>
 
 

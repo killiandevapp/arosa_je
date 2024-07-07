@@ -277,7 +277,7 @@ export default function GardeProprietaire() {
                 </div>
             </div>
             <div>
-                <button onClick={() => { setOpenFormAddCare(!openFormAddCare) }} className="p-[5px] mb-[35px] bg-xhite w-1/6 p-5 border-2 shadow-xl rounded-lg text-base mt-[15px] font-semibold text-[#5AD058] cursor-pointe">Créé une garde</button>
+                <button onClick={() => { setOpenFormAddCare(!openFormAddCare) }} className="p-[15px] mb-[35px] bg-xhite w-1/6 p-5 border-2 shadow-xl rounded-lg text-base mt-[15px] font-semibold text-[#5AD058] cursor-pointe">Créé une garde</button>
 
             </div>
 
@@ -374,22 +374,24 @@ export default function GardeProprietaire() {
 
 
                                 <>
-                                    <p onClick={() => openDetailAndAddPost(item.id)} className="mt-[30px] text-lg font-medium">Garde N°{index + 1}</p>
+                                  <div onClick={() => openDetailAndAddPost(item.id)} className="cursor-pointer border-2 shadow-xl p-[10px] rounded-lg mt-[35px]">
+                                    <p  className="mt-[10px] mb-[10px] text-lg font-medium">Garde N°{index + 1}</p>
                                     <div className="hidden ctnDeatailAndPost flex-col" id={"ctnDeatailAndPost" + item.id} >
                                         <p><span className="font-medium"> Description :</span> {item.description}</p>
-                                        <p><span className="font-medium">Début de la garde : </span> {item.started_at}</p>
-                                        <p><span className="font-medium">Fin de la garde :</span> {item.ended_at}</p>
+                                        <p><span className="font-medium">Début de la garde : </span>  {moment(item.started_at).format('DD/MM/YYYY')}</p>
+                                        <p><span className="font-medium">Fin de la garde :</span> {moment(item.ended_at).format('DD/MM/YYYY')} </p>
                                         <p><span className="font-medium">Personne gardant la plante :</span> {item.keeper != undefined ? item.keeper : ' attribution en cour.'}</p>
                                         <p><span className="font-medium">Botaniste attribuer :</span>{item.botaniste != undefined ? ' un botaniste a bien était attribuer' : ' pas de botaniste '} </p>
 
 
                                         <div className="flex flex-col mt-[10px]">
-                                            <input className="mb-[5px]" placeholder="Titre" />
-                                            <input placeholder="Description" />
-                                            <input type="file" name="Choisir image" onChange={AddImgPost} />
+                                            <input className="mb-[25px] mt-[15px]" placeholder="Titre" />
+                                            <input className="mb-[10px]" placeholder="Description" />
+                                            <input className="mt-[10px] bg-white" type="file" name="Choisir image" onChange={AddImgPost} />
                                         </div>
 
-                                        <button onClick={() => savePost(item.id)} className="mt-[15px] bg-[#5AD058] w-1/3 p-3 rounded-lg text-base font-semibold text-white cursor-pointer">Ennvoyer Post </button>
+                                        <button onClick={() => savePost(item.id)} className="p-[5px] mb-[35px] bg-xhite w-1/6 p-5 border-2 shadow-xl rounded-lg text-base mt-[35px] font-semibold text-[#5AD058] cursor-pointe">Ennvoyer Post </button>
+                                    </div>
                                     </div>
                                 </>
 
